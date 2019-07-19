@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=shinken
+
+%:
+	dh $@ --with python2 --buildsystem=pybuild
+
+# The test suite currently requires external network access, so we
+# can't enable it.
+#
+override_dh_auto_test:
+
+override_dh_installchangelogs:
+	dh_installchangelogs Changelog

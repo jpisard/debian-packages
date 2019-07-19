@@ -1,0 +1,24 @@
+Source: shinken
+Maintainer: Naparuba
+Section: python
+Priority: optional
+Build-Depends:
+ debhelper (>= 9),
+ dh-python,
+ python-all (>= 2.6.6-3),
+Standards-Version: 3.9.8
+X-Python-Version: >= 2.7
+Homepage: http://github.com/naparuba/shinken
+
+Package: shinken
+Architecture: all
+Pre-Depends:
+ dpkg (>= 1.15.6~),
+Depends:
+ ${misc:Depends},
+ ${python:Depends},
+ python-pycurl,
+ python-cherrypy3,
+Description: Shinken is an open source monitoring solution.
+ .
+

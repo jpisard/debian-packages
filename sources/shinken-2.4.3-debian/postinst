@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+. /usr/share/debconf/confmodule
+db_version 2.0
+
+action="$1"
+oldversion="$2"
+
+if [ "$action" = configure ]; then
+    if ! getent passwd shinken >/dev/null; then
+        adduser --quiet --system --shell /bin/bash --group shinken
+    fi
+fi
+
