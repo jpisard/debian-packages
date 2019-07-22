@@ -1,7 +1,9 @@
 # package name
-swname="shinken"
+swname="ilmbase"
+# download version
+downloadver="2.3.0"
 # package version
-swver="2.4.3"
+swver="2.3.0"
 
 # build functions
 
@@ -12,17 +14,21 @@ __get_source_code() {
    echo "** - removing the folder ${swname}-${swver} ..."
    rm -fr "${swname}-${swver}"
 
-   echo "** - download ${swname} git repository ..."
-   wget http://github.com/naparuba/shinken/archive/${swver}.tar.gz -O ${swname}_${swver}.orig.tar.gz
+   echo "** - download the ${swname}  with tag v${downloadver} ..."
+   wget https://github.com/openexr/openexr/releases/download/v${downloadver}/${swname}-${downloadver}.tar.gz -O ${swname}_${swver}.orig.tar.gz
 
    tar -zxvf ${swname}_${swver}.orig.tar.gz
-   [ -d "${swname}-${swver}" ] || \
-      die "no such folder: $PWD/${swname}-${swver}"
+   [ -d "${swname}-${downloadver}" ] || \
+      die "no such folder: $PWD/${swname}-${downloadver}"
+
+#   mv "${swname}-${downloadver}" "${swname}-${swver}"
+#   [ -d "${swname}-${swver}" ] || \
+#      die "no such folder: $PWD/${swname}-${swver}"
 
    # create the original tarball which is expected by debuild
    #tar -zcf ${swname}_${swver}.orig.tar.gz \
-   #         ${swname}-${swver}
-   
+   #   ${swname}-${swver}
+
    cp -pr "${swname}-${swver}-debian" \
           "${swname}-${swver}/debian"
 }
@@ -31,13 +37,8 @@ __install_build_dependencies() {
    apt-get --quiet update \
       && DEBIAN_FRONTEND=noninteractive \
          apt-get install -y \
-            bash-completion \
-            wget \
-            python-all  \
-            python-psutil \
-            python-pycurl \
-            python-setuptools  \
-            python-cherrypy3 \
+             debhelper \
+             autoconf-archive \
       && rm -rf /var/lib/apt/lists/* \
       && rm -rf /var/cache/apt/archives/*
 }
@@ -49,7 +50,7 @@ __build_source_code() {
 
 __move_packages_to_outdir() {
    mv ../*.{build*,changes,deb,dsc} \
-      ../${swname}_${swver}*.diff.gz \
+      ../${swname}_${swver}-*.debian.tar.* \
       ../${swname}_${swver}.orig.tar.gz \
       ${outdir}/
 }
@@ -60,4 +61,3 @@ __cleanall() {
    echo "** - removing sources folder ${swname}-${swver} ..."
    rm -fr ${swname}-${swver}
 }
-

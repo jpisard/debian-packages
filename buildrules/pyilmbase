@@ -1,7 +1,7 @@
 # package name
-swname="shinken"
+swname="pyilmbase"
 # package version
-swver="2.4.3"
+swver="2.3.0"
 
 # build functions
 
@@ -13,7 +13,9 @@ __get_source_code() {
    rm -fr "${swname}-${swver}"
 
    echo "** - download ${swname} git repository ..."
-   wget http://github.com/naparuba/shinken/archive/${swver}.tar.gz -O ${swname}_${swver}.orig.tar.gz
+   dpkg -i ${outdir}/libilmbase24_2.3.0-5_amd64.deb
+   dpkg -i ${outdir}/libilmbase-dev_2.3.0-5_amd64.deb
+   wget https://github.com/openexr/openexr/releases/download/v${swver}/${swname}-${swver}.tar.gz -O ${swname}_${swver}.orig.tar.gz
 
    tar -zxvf ${swname}_${swver}.orig.tar.gz
    [ -d "${swname}-${swver}" ] || \
@@ -32,14 +34,15 @@ __install_build_dependencies() {
       && DEBIAN_FRONTEND=noninteractive \
          apt-get install -y \
             bash-completion \
-            wget \
             python-all  \
-            python-psutil \
-            python-pycurl \
-            python-setuptools  \
-            python-cherrypy3 \
+            python3-all \
+            python-numpy \
+            python3-numpy \
+            libboost-python-dev \
+            zlib1g-dev \
       && rm -rf /var/lib/apt/lists/* \
       && rm -rf /var/cache/apt/archives/*
+
 }
 
 __build_source_code() {
