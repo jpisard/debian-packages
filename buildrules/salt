@@ -28,6 +28,10 @@ __get_source_code() {
 
    cp -pr "${swname}-${swver}-debian" \
           "${swname}-${swver}/debian"
+   # change version with code name
+   debian_name=$(lsb_release  -sc)
+   sed -i "s|{debian_name}|${debian_name}|g"  "${swname}-${swver}/debian/changelog"
+   echo ${debian_name}
 }
 
 __install_build_dependencies() {
