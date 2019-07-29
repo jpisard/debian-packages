@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # package name
 swname="py-zabbix"
 # package version

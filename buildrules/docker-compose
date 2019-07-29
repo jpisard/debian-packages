@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # package name
 swname="docker-compose"
 # package version
