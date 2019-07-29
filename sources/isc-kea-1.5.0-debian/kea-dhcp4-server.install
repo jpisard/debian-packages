@@ -1,0 +1,3 @@
+etc/kea/kea-dhcp4.conf
+usr/sbin/kea-dhcp4
+usr/share/man/man8/kea-dhcp4.8

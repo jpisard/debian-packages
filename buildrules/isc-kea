@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+# package name
+swname="isc-kea"
+# package version
+swver="1.5.0"
+
+# build functions
+
+__get_source_code() {
+   [ -d "${swname}-${swver}-debian" ] || \
+      die "no such folder: $PWD/${swname}-${swver}-debian"
+
+   echo "** - removing the folder ${swname}-${swver} ..."
+   rm -fr "${swname}-${swver}"
+
+   echo "** - download the ${swname}  with tag v${swver} ..."
+
+   wget http://deb.debian.org/debian/pool/main/i/${swname}/${swname}_${swver}.orig.tar.gz -O ${swname}_${swver}.orig.tar.gz
+
+   tar -zxvf ${swname}_${swver}.orig.tar.gz
+   mv kea-${swver} ${swname}-${swver}
+   [ -d "${swname}-${swver}" ] || \
+      die "no such folder: $PWD/${swname}-${swver}"
+
+   # create the original tarball which is expected by debuild
+   #tar -zcf ${swname}_${swver}.orig.tar.gz \
+   #   ${swname}-${swver}
+
+   cp -pr "${swname}-${swver}-debian" \
+          "${swname}-${swver}/debian"
+}
+
+__install_build_dependencies() {
+   apt-get --quiet update \
+      && DEBIAN_FRONTEND=noninteractive \
+         apt-get install -y \
+             debhelper \
+             autoconf-archive \
+             dh-buildinfo \
+             pkg-config \
+             zlib1g-dev \
+             bison  \
+             default-libmysqlclient-dev \
+             docbook docbook-xsl elinks flex libboost-dev libboost-system-dev liblog4cplus-dev libpq-dev libssl-dev postgresql-server-dev-all python3-dev xsltproc \
+      && rm -rf /var/lib/apt/lists/* \
+      && rm -rf /var/cache/apt/archives/*
+}
+
+__build_source_code() {
+   cd ${swname}-${swver}
+   debuild -us -uc
+}
+
+__move_packages_to_outdir() {
+   mv ../*.{build*,changes,deb,dsc} \
+      ../${swname}_${swver}-*.debian.tar.* \
+      ../${swname}_${swver}.orig.tar.gz \
+      ${outdir}/
+}
+
+__cleanall() {
+   echo "** - removing temporary build folder ${buildir}/${swname}-${swver} ..."
+   rm -fr ${buildir}/${swname}-${swver}
+   echo "** - removing sources folder ${swname}-${swver} ..."
+   rm -fr ${swname}-${swver}
+}

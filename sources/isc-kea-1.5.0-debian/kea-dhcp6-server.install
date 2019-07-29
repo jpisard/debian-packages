@@ -1,0 +1,3 @@
+etc/kea/kea-dhcp6.conf
+usr/sbin/kea-dhcp6
+usr/share/man/man8/kea-dhcp6.8

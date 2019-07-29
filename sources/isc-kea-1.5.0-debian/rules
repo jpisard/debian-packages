@@ -1,0 +1,61 @@
+#!/usr/bin/make -f
+
+# export DH_VERBOSE = 1
+
+# see EXAMPLES in dpkg-buildflags(1) and read /usr/share/dpkg/*
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/default.mk
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+	dh $@  --with python3 --parallel -X.la -B
+
+override_dh_auto_configure:
+	dh_auto_configure $@ -- \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var/lib \
+		--with-openssl \
+		--with-mysql \
+		--with-pgsql \
+		--with-boost-libs=-lboost_system \
+		--enable-generate-docs \
+		--enable-shell \
+		--disable-static \
+		--disable-rpath \
+		--enable-generate-parser \
+		--disable-dependency-tracking \
+		--without-werror
+
+override_dh_auto_make:
+	$(MAKE) -C tools system_messages
+	dh_auto_make
+
+override_dh_installdocs:
+	dh_installdocs -A AUTHORS README
+
+override_dh_auto_test:
+	dh_auto_test --no-parallel || /bin/true
+
+override_dh_auto_install:
+	dh_auto_install
+	-rm debian/tmp/usr/share/doc/kea/README \
+	    debian/tmp/usr/share/doc/kea/ChangeLog \
+	    debian/tmp/usr/share/doc/kea/AUTHORS \
+	    debian/tmp/usr/share/doc/kea/COPYING \
+	    debian/tmp/usr/share/man/man8/keactrl.8 \
+	    debian/tmp/usr/lib/python3.*/site-packages/kea/__pycache__/*.pyc \
+	    debian/tmp/usr/lib/python3.*/site-packages/kea/__pycache__/*.pyo \
+	    debian/tmp/usr/lib/python3.*/site-packages/kea/kea_connector2.py
+
+override_dh_missing:
+	dh_missing --fail-missing
+
+override_dh_clean:
+	dh_clean
+	rm -f tools/system_messages

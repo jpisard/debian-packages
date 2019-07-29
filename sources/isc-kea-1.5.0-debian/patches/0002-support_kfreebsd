@@ -1,0 +1,30 @@
+From: Adam Majer <adamm@zombino.com>
+Date: Fri, 13 Jul 2018 17:06:51 +0000
+Subject: support_kfreebsd
+
+---
+ configure.ac | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index c880b77..188c512 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -404,7 +404,7 @@ case "$host" in
+         [AC_MSG_RESULT([OS X >= 10.9])
+          kea_undefined_pthread_behavior=yes])
+         ;;
+-*-freebsd*)
++*-freebsd*|*-kfreebsd*)
+         # On FreeBSD10.1 pthread_cond_destroy doesn't work as documented, which
+         # causes the CondVarTest.destroyWhileWait test to fail. According to the
+         # pthread_cond_destroy documentation for FreeBSD, this function should
+@@ -527,7 +527,7 @@ case $host in
+       BSD_TYPE="OSX"
+       CPPFLAGS="$CPPFLAGS -DOS_BSD"
+       ;;
+-    *-freebsd*)
++    *-freebsd*|*-kfreebsd*)
+       AC_DEFINE([OS_BSD], [1], [Running on BSD?])
+       AC_DEFINE([OS_FREEBSD], [1], [Running on FreeBSD?])
+       OS_TYPE="BSD"

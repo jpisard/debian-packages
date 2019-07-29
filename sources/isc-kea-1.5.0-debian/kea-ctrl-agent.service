@@ -1,0 +1,24 @@
+[Unit]
+Description=Kea Control Agent
+Documentation=man:kea-ctrl-agent(8)
+After=network-online.target time-sync.target
+
+[Service]
+User=_kea
+Environment="KEA_PIDFILE_DIR=/run/kea"
+Environment="KEA_LOCKFILE_DIR=/run/lock/kea"
+Environment="KEA_LOGGER_DESTINATION=/var/log/kea"
+ConfigurationDirectory=kea
+RuntimeDirectory=kea lock/kea
+RuntimeDirectoryPreserve=yes
+LogsDirectory=kea
+LogsDirectoryMode=0750
+StateDirectory=kea
+ExecStart=/usr/sbin/kea-ctrl-agent -c /etc/kea/kea-ctrl-agent.conf
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=kea-dhcp4-server.service
+WantedBy=kea-dhcp6-server.service

@@ -1,0 +1,18 @@
+---
+src/hooks/* :
+  copyright: 2010-2018, Internet Systems Consortium, Inc. ("ISC")
+  license: MPL-2.0
+doc/* :
+  copyright: 2010-2018, Internet Systems Consortium, Inc. ("ISC")
+  license: MPL-2.0
+src/lib/dhcpsrv/cache_host_data_source.h :
+  copyright: 2018, Internet Systems Consortium, Inc. ("ISC")
+  license: MPL-2.0
+ext/* :
+  copyright: 2010-2018, Internet Systems Consortium, Inc. ("ISC")
+  license: MPL-2.0
+m4macros/* :
+  copyright: 1994-2013, Free Software Foundation, Inc.
+  license: MPL-2.0
+
+

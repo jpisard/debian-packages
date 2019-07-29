@@ -1,0 +1,31 @@
+From: =?utf-8?b?T25kxZllaiBTdXLDvQ==?= <ondrej@sury.org>
+Date: Tue, 19 Feb 2019 12:58:55 +0000
+Subject: Put KEA_LOCKFILE_DIR to runstatedir
+
+---
+ src/lib/log/interprocess/Makefile.am               | 2 +-
+ src/lib/log/interprocess/interprocess_sync_file.cc | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+--- a/src/lib/log/interprocess/Makefile.am
++++ b/src/lib/log/interprocess/Makefile.am
+@@ -1,7 +1,7 @@
+ SUBDIRS = . tests
+ 
+ AM_CPPFLAGS = -I$(top_srcdir)/src/lib -I$(top_builddir)/src/lib
+-AM_CPPFLAGS += -DLOCKFILE_DIR=\"$(localstatedir)/run/$(PACKAGE_NAME)\"
++AM_CPPFLAGS += -DKEA_LOCKFILE_DIR=\"$(runstatedir)/$(PACKAGE_NAME)\"
+ AM_CPPFLAGS += $(BOOST_INCLUDES)
+ 
+ AM_CXXFLAGS = $(KEA_CXXFLAGS)
+--- a/src/lib/log/interprocess/interprocess_sync_file.cc
++++ b/src/lib/log/interprocess/interprocess_sync_file.cc
+@@ -43,7 +43,7 @@
+     // if a default InterprocessSync object is replaced with another
+     // implementation, it doesn't attempt any opens.
+     if (fd_ == -1) {
+-        std::string lockfile_path = LOCKFILE_DIR;
++        std::string lockfile_path = KEA_LOCKFILE_DIR;
+ 
+         const char* const env = getenv("KEA_LOCKFILE_DIR");
+         if (env != NULL) {

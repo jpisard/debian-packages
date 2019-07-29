@@ -1,0 +1,35 @@
+From: =?utf-8?b?T25kxZllaiBTdXLDvQ==?= <ondrej@sury.org>
+Date: Tue, 19 Feb 2019 12:55:42 +0000
+Subject: Use runstatedir for pid file location
+
+---
+ src/lib/process/Makefile.am | 3 +--
+ src/lib/process/daemon.cc   | 2 +-
+ 2 files changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/src/lib/process/Makefile.am b/src/lib/process/Makefile.am
+index 61eb6a0..ec2ac1c 100644
+--- a/src/lib/process/Makefile.am
++++ b/src/lib/process/Makefile.am
+@@ -1,7 +1,6 @@
+ SUBDIRS = . testutils tests
+-dhcp_data_dir = @localstatedir@/@PACKAGE@
+ AM_CPPFLAGS  = -I$(top_builddir)/src/lib -I$(top_srcdir)/src/lib
+-AM_CPPFLAGS += -DDATA_DIR="\"$(dhcp_data_dir)\""
++AM_CPPFLAGS += -DKEA_PIDFILE_DIR="\"$(runstatedir)/$(PACKAGE_NAME)\""
+ 
+ AM_CPPFLAGS += $(BOOST_INCLUDES)
+ AM_CXXFLAGS  = $(KEA_CXXFLAGS)
+diff --git a/src/lib/process/daemon.cc b/src/lib/process/daemon.cc
+index 4cd280d..853f979 100644
+--- a/src/lib/process/daemon.cc
++++ b/src/lib/process/daemon.cc
+@@ -33,7 +33,7 @@ std::string Daemon::default_logger_name_("kea");
+ 
+ Daemon::Daemon()
+     : signal_set_(), signal_handler_(), config_file_(""), proc_name_(""),
+-      pid_file_dir_(DATA_DIR), pid_file_(), am_file_author_(false) {
++      pid_file_dir_(KEA_PIDFILE_DIR), pid_file_(), am_file_author_(false) {
+ 
+     // The pid_file_dir can be overridden via environment variable
+     // This is primarily intended to simplify testing
