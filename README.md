@@ -180,6 +180,9 @@ and enter the commands
     make package DISTRO=debian8 PKG=py-zabbix
     make package PKG=pyvmomi
     make package PKG=redis4
+    make package PKG=salt
+    make package PKG=shinken
+    make package DISTRO=debian8 PKG=isc-kea
 
 [Docker-CE][docker-ce] and [Docker Compose][docker-compose] must be installed in order
 the make command to work.
