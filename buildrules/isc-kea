@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # package name
-swname="py-zabbix"
+swname="isc-kea"
 # package version
-swver="1.1.3"
+swver="1.5.0"
 
 # build functions
 
@@ -14,18 +14,18 @@ __get_source_code() {
    echo "** - removing the folder ${swname}-${swver} ..."
    rm -fr "${swname}-${swver}"
 
-   echo "** - cloning the ${swname} git repository with tag v${swver} ..."
-   git clone --branch ${swver} --depth 1 \
-      https://github.com/adubkov/py-zabbix.git \
-         "${swname}-${swver}" || \
-         die "cannot clone the ${swname} repository from GitHub"
+   echo "** - download the ${swname}  with tag v${swver} ..."
 
+   wget http://deb.debian.org/debian/pool/main/i/${swname}/${swname}_${swver}.orig.tar.gz -O ${swname}_${swver}.orig.tar.gz
+
+   tar -zxvf ${swname}_${swver}.orig.tar.gz
+   mv kea-${swver} ${swname}-${swver}
    [ -d "${swname}-${swver}" ] || \
       die "no such folder: $PWD/${swname}-${swver}"
 
    # create the original tarball which is expected by debuild
-   tar -zcf ${swname}_${swver}.orig.tar.gz \
-            ${swname}-${swver}
+   #tar -zcf ${swname}_${swver}.orig.tar.gz \
+   #   ${swname}-${swver}
 
    cp -pr "${swname}-${swver}-debian" \
           "${swname}-${swver}/debian"
@@ -35,10 +35,14 @@ __install_build_dependencies() {
    apt-get --quiet update \
       && DEBIAN_FRONTEND=noninteractive \
          apt-get install -y \
-            python-all  \
-            python3-all \
-            python-setuptools  \
-            python3-setuptools \
+             debhelper \
+             autoconf-archive \
+             dh-buildinfo \
+             pkg-config \
+             zlib1g-dev \
+             bison  \
+             default-libmysqlclient-dev \
+             docbook docbook-xsl elinks flex libboost-dev libboost-system-dev liblog4cplus-dev libpq-dev libssl-dev postgresql-server-dev-all python3-dev xsltproc \
       && rm -rf /var/lib/apt/lists/* \
       && rm -rf /var/cache/apt/archives/*
 }

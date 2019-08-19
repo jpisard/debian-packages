@@ -166,6 +166,26 @@ _Redis is an in-memory database that persists on disk_
   * [redis-tools-dbgsym_4.0.14-1_amd64.deb][redis4-tools-dbgsym-debpkg]
   * [redis-tools_4.0.14-1_amd64.deb][redis4-redis-tools-debpkg]
 
+![](images/Kea-logo.png?raw=true "Isc-Kea Logo")
+
+#### isc-kea - version 1.5.0
+
+_isc-kea is a DHCP service_
+
+* Official website: https://kea.isc.org/
+* Git repository: https://github.com/isc-projects/kea
+
+
+![](images/SaltStack-logo.png?raw=true "SaltStack Logo")
+
+#### SaltStack - version 2019.2.1
+
+_SaltStack is a configuration management system, capable of maintaining remote nodes in defined states (for example, ensuring that specific packages are installed and specific services are running) and a distributed remote execution system used to execute commands and query data on remote nodes, either individually or by arbitrary selection criteria_
+
+* Official website: https://www.saltstack.com/
+* Git repository: https://github.com/saltstack/salt
+
+
 ## How to manually create the .deb packages and source files
 
 You can make use of the provided Makefile (requires the `make` tool)
@@ -180,6 +200,9 @@ and enter the commands
     make package DISTRO=debian8 PKG=py-zabbix
     make package PKG=pyvmomi
     make package PKG=redis4
+    make package PKG=salt
+    make package PKG=shinken
+    make package DISTRO=debian10 PKG=isc-kea
 
 [Docker-CE][docker-ce] and [Docker Compose][docker-compose] must be installed in order
 the make command to work.

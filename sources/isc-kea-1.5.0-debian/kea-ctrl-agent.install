@@ -1,0 +1,5 @@
+etc/kea/kea-ctrl-agent.conf
+usr/sbin/kea-ctrl-agent
+usr/sbin/kea-shell
+usr/share/man/man8/kea-ctrl-agent.8
+usr/share/man/man8/kea-shell.8

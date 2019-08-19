@@ -17,6 +17,7 @@ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 RUN apt-get --quiet update \
     && DEBIAN_FRONTEND=noninteractive \
        apt-get install -y \
+          wget \
           git        \
           debhelper  \
           devscripts \

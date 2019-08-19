@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # package name
 swname="shinken"
 # package version
@@ -22,7 +24,7 @@ __get_source_code() {
    # create the original tarball which is expected by debuild
    #tar -zcf ${swname}_${swver}.orig.tar.gz \
    #         ${swname}-${swver}
-   
+
    cp -pr "${swname}-${swver}-debian" \
           "${swname}-${swver}/debian"
 }
@@ -60,4 +62,3 @@ __cleanall() {
    echo "** - removing sources folder ${swname}-${swver} ..."
    rm -fr ${swname}-${swver}
 }
-

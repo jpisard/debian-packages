@@ -1,0 +1,33 @@
+---
+check:
+  suffixes:
+  - asm
+  - lua
+  - nqp
+  - s
+  - template
+ignore:
+  pattern:
+  - /debian/
+  - Makefile
+  - AUTHORS
+  - README
+  - ChangeLog
+  - INSTALL
+  - MANIFEST
+  - /config(.guess|ure|ure.ac|.h.in|.sub)
+  suffixes:
+  - generic
+  - rst
+  - jpg
+  - yml
+  - png
+  - dia
+  - o
+  - htm
+  - html
+  - txt
+  - install
+  - M
+  - in
+

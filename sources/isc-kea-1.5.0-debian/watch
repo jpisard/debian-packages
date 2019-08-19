@@ -1,0 +1,8 @@
+version=4
+opts=\
+compression=xz,\
+uversionmangle=s/((rc|b)\d+)$/~$1/;s/-P(\d+)$/.P$1/,\
+dirversionmangle=s/((rc|b)\d+)$/~$1/;s/-P(\d+)$/.P$1/,\
+dversionmangle=s/\.dfsg\./-/;s/[\.\+]dfsg$//,\
+pgpsigurlmangle=s/$/.asc/ \
+ https://ftp.isc.org/isc/kea/(\d+\.\d+\.\d+.*)/kea-(.*)\.tar\.gz

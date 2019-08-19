@@ -1,0 +1,5 @@
+0001-fix_typo
+0002-support_kfreebsd
+0003-kea_admin_fix
+0004-Use-runstatedir-for-pid-file-location.patch
+0005-Put-KEA_LOCKFILE_DIR-to-runstatedir.patch
