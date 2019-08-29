@@ -18,9 +18,9 @@ Pre-Depends:
 Depends:
  ${misc:Depends},
  ${python:Depends},
- libopenexr24 (>= 2.3.0),
- libilmbase24 (>= 2.3.0),
- python-pyilmbase (>= 2.3.0),
+ libopenexr24 (>> 2.3.0),
+ libilmbase24 (>> 2.3.0),
+ python-pyilmbase (>= 2.3.0~),
  libhdf5-dev,
 Description: Open framework for storing and sharing scene data.
  .
