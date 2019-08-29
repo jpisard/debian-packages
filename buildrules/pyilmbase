@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # package name
 swname="pyilmbase"
 # package version
@@ -15,8 +13,6 @@ __get_source_code() {
    rm -fr "${swname}-${swver}"
 
    echo "** - download ${swname} git repository ..."
-   dpkg -i ${outdir}/libilmbase24_2.3.0-5_amd64.deb
-   dpkg -i ${outdir}/libilmbase-dev_2.3.0-5_amd64.deb
    wget https://github.com/openexr/openexr/releases/download/v${swver}/${swname}-${swver}.tar.gz -O ${swname}_${swver}.orig.tar.gz
 
    tar -zxvf ${swname}_${swver}.orig.tar.gz
@@ -26,9 +22,40 @@ __get_source_code() {
    # create the original tarball which is expected by debuild
    #tar -zcf ${swname}_${swver}.orig.tar.gz \
    #         ${swname}-${swver}
-
+   
    cp -pr "${swname}-${swver}-debian" \
           "${swname}-${swver}/debian"
+
+   # change version with code name
+   debian_name=$(lsb_release  -sc)
+   
+   sed -i "s|{debian_name}|${debian_name}|g"  "${swname}-${swver}/debian/changelog"
+
+   case "$debian_name" in
+        stretch)
+            libboost-python="1.62.0"
+            ;;
+         
+        buster)
+            libboost-python="1.67.0"
+            ;;
+         
+        xenial)
+            libboost-python="1.78.0"
+            ;;
+       
+        *)
+            echo "$debian_name" 
+            echo "no libboost defined for distrib"
+            exit 1
+    esac
+
+   sed -i "s|{libboost-python}|${libboost-python}|g"  "${swname}-${swver}/debian/control"
+
+   # add dependent packages from output
+   dpkg -i ${outdir}/libilmbase24_2.3.0-5~${debian_name}_amd64.deb
+   dpkg -i ${outdir}/libilmbase-dev_2.3.0-5~${debian_name}_amd64.deb
+
 }
 
 __install_build_dependencies() {
@@ -54,7 +81,6 @@ __build_source_code() {
 
 __move_packages_to_outdir() {
    mv ../*.{build*,changes,deb,dsc} \
-      ../${swname}_${swver}*.diff.gz \
       ../${swname}_${swver}.orig.tar.gz \
       ${outdir}/
 }
@@ -65,3 +91,4 @@ __cleanall() {
    echo "** - removing sources folder ${swname}-${swver} ..."
    rm -fr ${swname}-${swver}
 }
+

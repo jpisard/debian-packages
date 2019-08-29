@@ -15,8 +15,6 @@ __get_source_code() {
 
    dpkg -i ${outdir}/libilmbase24_2.3.0-5_amd64.deb
    dpkg -i ${outdir}/libilmbase-dev_2.3.0-5_amd64.deb
-   dpkg -i ${outdir}/libopenexr24_2.3.0-5_amd64.deb
-   dpkg -i ${outdir}/libopenexr-dev_2.3.0-5_amd64.deb
 
    echo "** - download the ${swname}  with tag v${downloadver} ..."
    wget https://github.com/${downloadname}/${downloadname}/archive/${swver}.tar.gz -O ${swname}_${swver}.orig.tar.gz
@@ -28,10 +26,16 @@ __get_source_code() {
 
    cp -pr "${swname}-${swver}-debian" \
           "${swname}-${swver}/debian"
+
    # change version with code name
    debian_name=$(lsb_release  -sc)
-   #sed -i "s|{debian_name}|${debian_name}|g"  "${swname}-${swver}/debian/changelog"
-   #echo ${debian_name}
+   sed -i "s|{debian_name}|${debian_name}|g"  "${swname}-${swver}/debian/changelog"
+
+   # add dependent packages from output
+   dpkg -i ${outdir}/libilmbase24_2.3.0-5~${debian_name}_amd64.deb
+   dpkg -i ${outdir}/libilmbase-dev_2.3.0-5~${debian_name}_amd64.deb
+   dpkg -i ${outdir}/libopenexr24_2.3.0-5~${debian_name}_amd64.deb
+   dpkg -i ${outdir}/libopenexr-dev_2.3.0-5~${debian_name}_amd64.deb
 }
 
 __install_build_dependencies() {
@@ -50,8 +54,7 @@ __install_build_dependencies() {
             libboost-python-dev \
             libboost-program-options-dev \
             python-numpy \
-            libboost-python1.62-dev \
-      && dpkg -i ${outdir}/python-pyilmbase_2.3.0_all.deb \
+      && dpkg -i ${outdir}/python-pyilmbase_2.3.0~${debian_name}_amd64.deb \
       && rm -rf /var/lib/apt/lists/* \
       && rm -rf /var/cache/apt/archives/* 
 }

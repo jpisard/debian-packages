@@ -11,6 +11,7 @@ RUN apt-get --quiet update \
           git        \
           wget       \
           debhelper  \
+          dh-autoreconf \
           devscripts \
           dh-systemd \
     && rm -rf /var/lib/apt/lists/* \
