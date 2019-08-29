@@ -24,3 +24,12 @@ services:
     volumes:
     - ./output/debian10:/opt/build
     - ./sources:/opt/sources
+
+  ubuntu16:
+    build:
+      context: .
+      dockerfile: ubuntu16/Dockerfile
+    volumes:
+    - ./output/ubuntu16:/opt/build
+    - ./sources:/opt/sources
+
