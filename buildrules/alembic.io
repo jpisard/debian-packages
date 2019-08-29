@@ -66,14 +66,13 @@ __build_source_code() {
 
 __move_packages_to_outdir() {
    mv ../*.{build*,changes,deb,dsc} \
-      ../${swname}_${swver}*.diff.gz \
       ../${swname}_${swver}.orig.tar.gz \
       ${outdir}/
 }
 
 __cleanall() {
    echo "** - removing temporary build folder ${buildir}/${swname}-${swver} ..."
-   #rm -fr ${buildir}/${swname}-${swver}
+   rm -fr ${buildir}/${swname}-${swver}
    echo "** - removing sources folder ${swname}-${swver} ..."
-   #rm -fr ${swname}-${swver}
+   rm -fr ${swname}-${swver}
 }
