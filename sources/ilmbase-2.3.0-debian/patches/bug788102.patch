@@ -1,0 +1,26 @@
+Description: fatal error: asm/sigcontext.h: No such file or directory
+Author: Samuel Thibault <sthibault@debian.org>
+Bug-Debian: http://bugs.debian.org/788102
+
+--- a/IexMath/IexMathFpu.cpp
++++ b/IexMath/IexMathFpu.cpp
+@@ -52,7 +52,7 @@
+     #define debug(x)
+ #endif
+ 
+-#if defined(HAVE_UCONTEXT_H) && (defined(__x86_64__) || defined(_M_X64) || defined(__i386__) || defined(_M_IX86))
++#if defined(HAVE_UCONTEXT_H) && (defined(__x86_64__) || defined(_M_X64) || defined(__i386__) || defined(_M_IX86)) && (defined(ILMBASE_HAVE_CONTROL_REGISTER_SUPPORT) || defined(__FreeBSD_kernel__) || defined(HAVE_ASM_SIGCONTEXT_H))
+ 
+ #include <ucontext.h>
+ #include <signal.h>
+--- a/configure.ac
++++ b/configure.ac
+@@ -66,7 +66,7 @@
+ dnl Checks for header files.
+ dnl
+ AC_HEADER_STDC
+-AC_CHECK_HEADERS(limits.h unistd.h ucontext.h)
++AC_CHECK_HEADERS(limits.h unistd.h ucontext.h asm/sigcontext.h)
+ 
+ dnl Checks for typedefs, structures, and compiler characteristics.
+ AC_C_CONST

@@ -1,0 +1,31 @@
+Description: Set automake options globally in configure.ac
+ Always invoke automake with --foreign by specifying this option as argument
+ to AM_INIT_AUTOMAKE in configure.ac instead of in the bootstrap script.
+ This makes it possible to use autoreconf on distributed tarballs.
+Author: Andreas Metzler <ametzler@debian.org>
+Origin: vendor
+Forwarded: no
+Last-Update: 2018-11-11
+
+--- openexr-2.3.0.orig/bootstrap
++++ openexr-2.3.0/bootstrap
+@@ -53,7 +53,7 @@ fi
+ 
+ run_cmd aclocal -I m4 $ACLOCAL_INCLUDE
+ run_cmd $LIBTOOLIZE --automake --copy
+-run_cmd automake --add-missing --copy --foreign
++run_cmd automake --add-missing --copy
+ run_cmd autoconf
+ echo
+ echo "Now type './configure' to configure OpenEXR."
+--- openexr-2.3.0.orig/configure.ac
++++ openexr-2.3.0/configure.ac
+@@ -13,7 +13,7 @@ AC_SUBST(OPENEXR_VERSION_API, ${OPENEXR_
+ AC_CANONICAL_HOST
+ AC_CONFIG_SRCDIR(IlmImfTest/main.cpp)
+ AC_CONFIG_HEADERS([config/OpenEXRConfig.h])
+-AM_INIT_AUTOMAKE(1.6.3)  dnl Require automake 1.6.3 or better
++AM_INIT_AUTOMAKE([1.6.3 foreign])  dnl Require automake 1.6.3 or better
+ AM_MAINTAINER_MODE
+ 
+ 

@@ -1,0 +1,38 @@
+Description: fatal error: asm/sigcontext.h: No such file or directory
+Author: Steven Chamberlain <steven@pyro.eu.org>
+Bug-Debian: http://bugs.debian.org/788102
+
+Index: ilmbase/IexMath/IexMathFpu.cpp
+===================================================================
+--- ilmbase.orig/IexMath/IexMathFpu.cpp
++++ ilmbase/IexMath/IexMathFpu.cpp
+@@ -264,6 +264,18 @@ restoreControlRegs (const ucontext_t & u
+     setMxcsr (ucon.uc_mcontext.fpregs->mxcsr, clearExceptions);
+ }
+ 
++#elif defined(__FreeBSD_kernel__)
++
++#include <machine/npx.h>
++
++inline void
++restoreControlRegs (const ucontext_t & ucon, bool clearExceptions)
++{
++    struct envxmm *ex = (struct envxmm *)(ucon.uc_mcontext.mc_fpstate);
++    setCw ((ex->en_cw & cwRestoreMask) | cwRestoreVal);
++    setMxcsr (ex->en_mxcsr, clearExceptions);
++}
++
+ #else
+ 
+ //
+@@ -463,8 +475,9 @@ setFpExceptionHandler (FpExceptionHandle
+ 	sigemptyset (&action.sa_mask);
+ 	action.sa_flags = SA_SIGINFO | SA_NOMASK;
+ 	action.sa_sigaction = (void (*) (int, siginfo_t *, void *)) catchSigFpe;
++#ifndef __FreeBSD_kernel__
+ 	action.sa_restorer = 0;
+-
++#endif
+ 	sigaction (SIGFPE, &action, 0);
+     }
+ 

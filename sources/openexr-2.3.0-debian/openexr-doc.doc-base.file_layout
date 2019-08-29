@@ -1,0 +1,9 @@
+Document: openexr-filelayout
+Title: OpenEXR File Layout
+Author: Lucas Digital Ltd. LLC.
+Abstract: This document gives an overview of the layout of OpenEXR image files
+ as byte sequences
+Section: Programming
+
+Format: PDF
+Files: /usr/share/doc/openexr/OpenEXRFileLayout.pdf

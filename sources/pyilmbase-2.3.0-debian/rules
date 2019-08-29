@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=pyilmbase
+export DH_ALWAYS_EXCLUDE=CVS:.la
+
+%:
+#	dh $@ --with python2 --buildsystem=pybuild
+#	dh $@ --with python2,python3 --buildsystem=pybuild
+	dh $@ 
+# The test suite currently requires external network access, so we
+# can't enable it.
+#
+override_dh_auto_test:
+
+#override_dh_installchangelogs:
+#	dh_installchangelogs Changelog

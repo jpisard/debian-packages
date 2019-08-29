@@ -1,0 +1,42 @@
+From: Helmut Grohne <helmut@subdivi.de>
+Date: Sat, 27 Oct 2018 16:01:43 +0200
+Subject: Fix_FTCBFS
+
+- Use CXX_FOR_BUILD for compiling build tools
+- Thus add AX_PROG_CXX_FOR_BUILD to configure.ac
+- Thus autoreconf
+---
+ Half/Makefile.am | 6 ++++--
+ configure.ac     | 1 +
+ 2 files changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/Half/Makefile.am b/Half/Makefile.am
+index 6d420a6..114a5ca 100644
+--- a/Half/Makefile.am
++++ b/Half/Makefile.am
+@@ -17,9 +17,11 @@ EXTRA_DIST = eLut.cpp toFloat.cpp CMakeLists.txt
+ 
+ CLEANFILES = eLut eLut.h toFloat toFloat.h
+ 
+-eLut_SOURCES = eLut.cpp
++eLut$(EXEEXT): eLut.cpp
++	$(CXX_FOR_BUILD) $(CXXFLAGS_FOR_BUILD) $< -o $@
+ 
+-toFloat_SOURCES = toFloat.cpp
++toFloat$(EXEEXT): toFloat.cpp
++	$(CXX_FOR_BUILD) $(CXXFLAGS_FOR_BUILD) $< -o $@
+ 
+ eLut.h:	eLut
+ 	./eLut > eLut.h
+diff --git a/configure.ac b/configure.ac
+index 75c8f2e..53ab59c 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -28,6 +28,7 @@ AC_PROG_CC
+ AC_PROG_LN_S
+ AC_PROG_LIBTOOL
+ AC_PROG_MAKE_SET
++AX_PROG_CXX_FOR_BUILD
+ 
+ dnl
+ dnl PKGCONFIG preparations

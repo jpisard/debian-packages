@@ -1,0 +1,144 @@
+Source: openexr
+Section: graphics
+Priority: optional
+Maintainer: Debian PhotoTools Maintainers <pkg-phototools-devel@lists.alioth.debian.org>
+Uploaders:
+ Mathieu Malaterre <malat@debian.org>,
+ Matteo F. Vescovi <mfv@debian.org>
+Build-Conflicts:
+ libopenexr-dev (<< 2.2.0-1)
+Build-Depends:
+ debhelper (>= 10~),
+ dh-buildinfo,
+ dpkg-dev (>= 1.16.0),
+ libilmbase-dev (>= 2.3.0-5),
+ pkg-config,
+ zlib1g-dev
+Standards-Version: 4.3.0
+Homepage: http://www.openexr.com
+Vcs-Git: https://salsa.debian.org/debian-phototools-team/openexr.git
+Vcs-Browser: https://salsa.debian.org/debian-phototools-team/openexr
+
+Package: openexr
+Architecture: any
+Multi-Arch: foreign
+Pre-Depends:
+ ${misc:Pre-Depends}
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends}
+Suggests: exrtools
+Description: command-line tools for the OpenEXR image format
+ OpenEXR is a high dynamic-range (HDR) image file format developed by
+ Industrial Light & Magic for use in computer imaging applications.
+ .
+ OpenEXR's features include:
+    * Higher dynamic range and colour precision than existing 8- and
+      10-bit image file formats.
+    * Support for the "half" 16-bit floating-point pixel format.
+    * Multiple lossless image compression algorithms. Some of the
+      included codecs can achieve 2:1 lossless compression ratios on
+      images with film grain.
+    * Extensibility. New compression codecs and image types can easily
+      be added by extending the C++ classes included in the OpenEXR
+      software distribution. New image attributes (strings, vectors,
+      integers, etc.) can be added to OpenEXR image headers without
+      affecting backward compatibility with existing OpenEXR
+      applications.
+ .
+ This package contains the following tools:
+    * exrheader, a utility for dumping header information.
+    * exrstdattr, a utility for modifying OpenEXR standard attributes.
+    * exrmaketiled, for generating tiled and rip/mipmapped images.
+    * exrenvmap, for creating OpenEXR environment maps.
+    * exrmakepreview, for creating preview images for OpenEXR files.
+
+Package: openexr-doc
+Section: doc
+Architecture: all
+Depends:
+ doc-base,
+ ${misc:Depends}
+Breaks: openexr (<< 1.6.1-9)
+Replaces: openexr (<< 1.6.1-9)
+Description: documentation and examples for the OpenEXR image format
+ OpenEXR is a high dynamic-range (HDR) image file format developed by
+ Industrial Light & Magic for use in computer imaging applications.
+ .
+ OpenEXR's features include:
+    * Higher dynamic range and colour precision than existing 8- and
+      10-bit image file formats.
+    * Support for the "half" 16-bit floating-point pixel format.
+    * Multiple lossless image compression algorithms. Some of the
+      included codecs can achieve 2:1 lossless compression ratios on
+      images with film grain.
+    * Extensibility. New compression codecs and image types can easily
+      be added by extending the C++ classes included in the OpenEXR
+      software distribution. New image attributes (strings, vectors,
+      integers, etc.) can be added to OpenEXR image headers without
+      affecting backward compatibility with existing OpenEXR
+      applications.
+ .
+ This package contains documentation for the format and examples
+
+Package: libopenexr-dev
+Section: libdevel
+Architecture: any
+Pre-Depends:
+ ${misc:Pre-Depends}
+Depends:
+ libilmbase-dev (>= 2.3.0-3),
+ libopenexr24 (= ${binary:Version}),
+ ${misc:Depends}
+Description: development files for the OpenEXR image library
+ OpenEXR is a high dynamic-range (HDR) image file format developed by
+ Industrial Light & Magic for use in computer imaging applications.
+ .
+ OpenEXR's features include:
+    * Higher dynamic range and colour precision than existing 8- and
+      10-bit image file formats.
+    * Support for the "half" 16-bit floating-point pixel format.
+    * Multiple lossless image compression algorithms. Some of the
+      included codecs can achieve 2:1 lossless compression ratios on
+      images with film grain.
+    * Extensibility. New compression codecs and image types can easily
+      be added by extending the C++ classes included in the OpenEXR
+      software distribution. New image attributes (strings, vectors,
+      integers, etc.) can be added to OpenEXR image headers without
+      affecting backward compatibility with existing OpenEXR
+      applications.
+ .
+ This package contains the header files required if you wish to
+ compile/develop applications that use OpenEXR libraries.
+
+Package: libopenexr24
+Section: libs
+Architecture: any
+Multi-Arch: same
+Pre-Depends:
+ ${misc:Pre-Depends}
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends}
+Breaks: libopenexr23 (= 2.3.0-3)
+Replaces: libopenexr23 (= 2.3.0-3)
+Description: runtime files for the OpenEXR image library
+ OpenEXR is a high dynamic-range (HDR) image file format developed by
+ Industrial Light & Magic for use in computer imaging applications.
+ .
+ OpenEXR's features include:
+    * Higher dynamic range and colour precision than existing 8- and
+      10-bit image file formats.
+    * Support for the "half" 16-bit floating-point pixel format.
+    * Multiple lossless image compression algorithms. Some of the
+      included codecs can achieve 2:1 lossless compression ratios on
+      images with film grain.
+    * Extensibility. New compression codecs and image types can easily
+      be added by extending the C++ classes included in the OpenEXR
+      software distribution. New image attributes (strings, vectors,
+      integers, etc.) can be added to OpenEXR image headers without
+      affecting backward compatibility with existing OpenEXR
+      applications.
+ .
+ This package contains the following shared library:
+    * IlmImf - a library that reads and writes OpenEXR images.

@@ -1,0 +1,31 @@
+Author: Samuel Thibault <sthibault@debian.org>
+Description: fix FTBFS on !linux
+Bug-Debian: http://bugs.debian.org/815594
+Date: 2016-02-22
+
+--- ./IlmImfTest/main.cpp.original	2016-02-22 19:14:34.000000000 +0100
++++ ./IlmImfTest/main.cpp	2016-02-22 19:14:54.000000000 +0100
+@@ -98,9 +98,9 @@
+ #include <iostream>
+ #include <string.h>
+ #include <time.h>
++#include <unistd.h>
+ 
+ #if defined(OPENEXR_IMF_HAVE_LINUX_PROCFS) || defined(OPENEXR_IMF_HAVE_DARWIN)
+-    #include <unistd.h>
+     #include <sstream>
+ #endif
+ 
+--- ./IlmImfUtilTest/main.cpp.original	2016-02-22 19:38:34.000000000 +0100
++++ ./IlmImfUtilTest/main.cpp	2016-02-22 19:37:51.000000000 +0100
+@@ -46,9 +46,7 @@
+ #include <cstring>
+ #include <time.h>
+ 
+-#if defined(OPENEXR_IMF_HAVE_LINUX_PROCFS) || defined(OPENEXR_IMF_HAVE_DARWIN)
+-    #include <unistd.h>
+-#endif
++#include <unistd.h>
+ 
+ using namespace std;
+ 

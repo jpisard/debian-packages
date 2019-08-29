@@ -1,0 +1,70 @@
+#! /usr/bin/make -f
+#
+# © 2009 Cyril Brulebois <kibi@debian.org>
+
+
+##### VARIABLES
+#
+
+DEB_BUILD_ARCH      ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+#NO_MAKE_CHECK_ARCHS := arm
+NO_FAIL_ON_TESTSUITE_ERROR := i386
+
+ifeq (,$(filter $(DEB_BUILD_ARCH),alpha))
+	export DEB_CFLAGS_MAINT_APPEND=-Wall
+	export DEB_CXXFLAGS_MAINT_APPEND=-Wall
+else
+	export DEB_CFLAGS_MAINT_APPEND=-Wall -mieee
+	export DEB_CXXFLAGS_MAINT_APPEND=-Wall -mieee
+endif
+
+##### OVERRIDES
+#
+
+override_dh_autoreconf:
+	dh_autoreconf -- bash ./bootstrap
+
+# Need to set an environment variable to make sure proper linking
+# against libphtread happens:
+override_dh_auto_configure:
+	PTHREAD_LIBS=-lpthread \
+		$(shell dpkg-buildflags --export=configure) \
+		dh_auto_configure -v
+
+# Need to disable the test suite on some architectures:
+override_dh_auto_test:
+ifeq (,$(filter $(DEB_BUILD_ARCH),$(NO_MAKE_CHECK_ARCHS)))
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+ifeq (,$(filter $(DEB_BUILD_ARCH),$(NO_FAIL_ON_TESTSUITE_ERROR)))
+	dh_auto_test -v
+else
+	dh_auto_test -v || echo TESTSUITE FAILED, continuing anyway.
+endif
+endif
+endif
+
+# Need to install those in both packages:
+override_dh_installdocs:
+	dh_installdocs AUTHORS NEWS README.md
+
+override_dh_auto_install:
+	dh_auto_install
+	# see #841444
+	sed -i /ILMBASE_HAVE_CONTROL_REGISTER_SUPPORT/d debian/tmp/usr/include/OpenEXR/IlmBaseConfig.h
+
+# Need to pass -V to dh_makeshlibs:
+override_dh_makeshlibs:
+	dh_makeshlibs -V
+
+override_dh_clean:
+	dh_clean */Makefile
+	dh_clean IlmBase.pc
+	dh_clean Makefile
+	dh_clean config.log
+	dh_clean config.status
+	dh_clean config/stamp-h1
+	dh_clean libtool
+
+# Everything else:
+%:
+	dh $@

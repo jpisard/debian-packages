@@ -1,0 +1,29 @@
+Source: alembic.io
+Section: python
+Maintainer: alembic.io
+Priority: optional
+Build-Depends:
+ debhelper (>= 9),
+ zlib1g-dev,
+ libopenexr-dev,
+ libhdf5-dev,
+Standards-Version: 3.9.8
+X-Python-Version: >= 2.7
+Homepage: http://alembic.io/
+
+Package: alembic.io
+Architecture: all
+Pre-Depends:
+ dpkg (>= 1.15.6~),
+Depends:
+ ${misc:Depends},
+ ${python:Depends},
+ libopenexr24 (>= 2.3.0),
+ libilmbase24 (>= 2.3.0),
+ python-pyilmbase (>= 2.3.0),
+ libhdf5-dev,
+Description: Open framework for storing and sharing scene data.
+ .
+
+
+

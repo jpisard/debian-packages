@@ -1,0 +1,27 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+override_dh_auto_configure:
+#	dh_auto_configure -- -DUSE_HDF5=ON -DUSE_EXAMPLES=ON -DUSE_PYALEMBIC=ON -DALEMBIC_SHARED_LIBS=ON -DUSE_BINARIES=ON -DUSE_STATIC_BOOST=OFF
+	dh_auto_configure -- -DUSE_HDF5=ON -DUSE_EXAMPLES=ON -DUSE_PYALEMBIC=ON -DUSE_BINARIES=ON -DUSE_STATIC_BOOST=OFF -DALEMBIC_SHARED_LIBS=ON -DALEMBIC_LIB_USES_TR1=OFF -DALEMBIC_LIB_USES_BOOST=OFF  -DUSE_STATIC_HDF5=OFF 
+
+
+override_dh_auto_test:
+override_dh_usrlocal:
+override_dh_shlibdeps:
+	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info
+
+%:
+	dh $@ --buildsystem=cmake
+
+#    -DUSE_STATIC_HDF5=OFF \
+#    -DUSE_TESTS=ON \
+
+   #-DUSE_MAYA=ON \
+   #-DMAYA_ROOT=$HA_MAYA_PATH \
+#  -DALEMBIC_LIB_USES_TR1=OFF \
+#  -DALEMBIC_LIB_USES_BOOST=OFF \
+
+#  -DCMAKE_INSTALL_PREFIX=../alembic_env \

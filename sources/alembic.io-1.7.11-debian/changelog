@@ -1,0 +1,16 @@
+alembic.io (1.7.11-1~{debian_name}) stable; urgency=medium
+
+  * debian/changelog: insert dist name to package
+
+alembic.io (1.7.11-1) stable; urgency=low
+
+  * apply patch
+
+ -- Jean-Philippe Martin <jpmartin@studiohari.com>  Fri, 19 Aug 2019 16:56:00 +0200
+
+alembic.io (1.7.11) stable; urgency=low
+
+  * First build
+
+ -- Jean-Philippe Martin <jpmartin@studiohari.com>  Fri, 19 Jul 2019 13:56:00 +0200
+

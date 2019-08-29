@@ -1,0 +1,13 @@
+#fix_gcc4.3_ftbfs.diff
+#CVE-2009-1720-1.diff
+#CVE-2009-1720-2.diff
+#20_autoreconf.diff
+bug790495.patch
+typos.patch
+bug791478.patch
+openexr-2.1.0-bigendian.patch
+bigendian_step2.patch
+bug815594.patch
+#CVE-2017-911x.patch
+am_foreign_set_global.diff
+bug909865.patch

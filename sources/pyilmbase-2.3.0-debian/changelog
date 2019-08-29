@@ -1,0 +1,9 @@
+python-pyilmbase (2.3.0~{debian_name}) stable; urgency=medium
+
+  * debian/changelog: insert dist name to package
+
+python-pyilmbase (2.3.0) stable; urgency=low
+
+  * Build of python-ilmbase 2.3.0
+
+ -- Jean-Philippe Martin <jpmartin@studiohari.com>  Mon, 22 Jul 2019 13:38:00 +0200

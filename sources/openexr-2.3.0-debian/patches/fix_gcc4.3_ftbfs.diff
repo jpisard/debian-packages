@@ -1,0 +1,4 @@
+Description: fix compilation
+Author: Cyril Brulebois <cyril.brulebois@enst-bretagne.fr>
+Bug-Debian: https://bugs.debian.org/441573
+

@@ -1,0 +1,2 @@
+symlink_to_dir /usr/share/doc/openexr libopenexr6 2.2.0-2~
+symlink_to_dir /usr/share/doc/openexr libopenexr6v5 2.2.0-4~

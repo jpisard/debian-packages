@@ -1,0 +1,6 @@
+10_fix_testsuite_for_m68k
+bug788102.patch
+kfreebsd-support.patch
+testBoxAlgo.patch
+testBox.patch
+fix_FTCBFS.patch

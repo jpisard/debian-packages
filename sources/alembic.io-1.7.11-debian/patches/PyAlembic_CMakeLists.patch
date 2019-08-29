@@ -1,0 +1,11 @@
+--- alembic.io-1.7.11.ori/python/PyAlembic/CMakeLists.txt	2019-08-19 19:08:28.442371791 +0200
++++ alembic.io-1.7.11/python/PyAlembic/CMakeLists.txt	2019-08-19 21:26:25.300198009 +0200
+@@ -141,7 +141,7 @@
+     )
+ 
+     SET( ALEMBIC_PYTHON_INSTALL_DIR
+-        lib/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}/site-packages
++        lib/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}/dist-packages
+         CACHE PATH
+         "Alembic's python bindings install directory"
+     )

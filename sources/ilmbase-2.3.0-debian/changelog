@@ -1,0 +1,336 @@
+ilmbase (2.3.0-5~{debian_name}) experimental; urgency=medium
+
+  * debian/changelog: insert dist name to package
+
+ilmbase (2.3.0-5) experimental; urgency=medium
+
+  * debian/overrides: Update libilmbase24
+  * debian/control: Provide a clean upgrade path. Closes: #917457
+
+ -- Mathieu Malaterre <malat@debian.org>  Mon, 07 Jan 2019 21:41:21 +0100
+
+ilmbase (2.3.0-4) experimental; urgency=medium
+
+  * debian/control: SONAME bump 23 -> 24 to reflect libtool numbering
+  * debian/: filenames adapted to SONAME bump
+  * debian/: debhelper bump 9 -> 12
+  * debian/rules: drop autoreconf addon removed
+  * debian/control: S-V bump 4.2.1 -> 4.3.0 (no changes needed)
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Wed, 02 Jan 2019 10:31:10 +0100
+
+ilmbase (2.3.0-3) experimental; urgency=medium
+
+  * Revert "debian/: move libilmbase-dev to M-A"
+  * debian/: Remove arch specific from one header file
+
+ -- Mathieu Malaterre <malat@debian.org>  Fri, 09 Nov 2018 10:07:49 +0100
+
+ilmbase (2.3.0-2) experimental; urgency=medium
+
+  * debian/patches/: patchset updated
+    - fix_FTCBFS.patch added (Closes: #841439)
+  * debian/: changes made to fix FTCBFS
+    - control: autoconf-archive and dh-autoreconf added to b-deps
+    - rules: override_dh_autoreconf entry and dh addon added
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Sat, 27 Oct 2018 22:45:50 +0200
+
+ilmbase (2.3.0-1) experimental; urgency=medium
+
+  * New upstream release
+    - debian/: watch file and signing key updated
+    - debian/patches/: patchset updated
+      - bug843594.patch dropped (applied upstream)
+    - debian/rules: rename README -> README.md
+  * debian/: debhelper bump 9 -> 11
+  * debian/: move libilmbase-dev to M-A (Closes: #841444)
+  * debian/control:
+    - Vcs-* fields updated for salsa
+    - S-V bump 4.1.3 -> 4.2.1 (no changes needed)
+  * debian/copyright: http:// -> https:// for copyright-format
+  * debian/overrides/libilmbase23: override updated
+  * debian/watch: add PGP verification for upstream tarballs
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Mon, 22 Oct 2018 23:33:22 +0200
+
+ilmbase (2.2.1-2) unstable; urgency=medium
+
+  * Upload to unstable
+  * debian/control: S-V bump 4.1.2 -> 4.1.3 (no changes needed)
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Fri, 05 Jan 2018 21:15:08 +0100
+
+ilmbase (2.2.1-1) experimental; urgency=medium
+
+  * New upstream release
+    - debian/: SONAME bump "12" -> "23"
+  * debian/control: S-V bump 3.9.8 -> 4.1.2 (no changes needed)
+  * debian/: autotools-dev usage dropped
+  * debian/watch: https:// usage and gpg signature fixed
+  * debian/patches/: patchset update
+    - bug843594.patch added
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Wed, 27 Dec 2017 22:01:41 +0100
+
+ilmbase (2.2.0-12) unstable; urgency=medium
+
+  [ Mathieu Malaterre ]
+  * Proprietary licence in halfExport.h Closes: #843594
+
+  [ Matteo F. Vescovi ]
+  * debian/control: S-V bump 3.9.7 -> 3.9.8 (no changes needed)
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Mon, 23 Jan 2017 14:31:15 +0100
+
+ilmbase (2.2.0-11) unstable; urgency=medium
+
+  [ Mathieu Malaterre ]
+  * Fix compilation on hurd (really!). Closes: #788102
+
+  [ Matteo F. Vescovi ]
+  * debian/control: S-V bump 3.9.6 -> 3.9.7 (no changes needed)
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Sat, 27 Feb 2016 13:30:59 +0100
+
+ilmbase (2.2.0-10) unstable; urgency=medium
+
+  * Remove symbols file. Closes: #815633
+  * Fix kFreeBSD compilation. Closes: #788102
+  * Fix FTBFS on many 32-bit arches. Closes: #815712
+
+ -- Mathieu Malaterre <malat@debian.org>  Thu, 25 Feb 2016 21:18:13 +0100
+
+ilmbase (2.2.0-9) unstable; urgency=medium
+
+  [ Samuel Thibault ]
+  * fatal error: asm/sigcontext.h: No such file or directory. Closes: #788102
+  * Here is also a symbol fix for hurd-i386.
+
+  [ Bart Martens ]
+  * mutiple updates
+
+  [ Mathieu Malaterre ]
+  * Update symbol file for sparc64
+  * Fix symbol file on ppc64el
+
+ -- Mathieu Malaterre <malat@debian.org>  Mon, 22 Feb 2016 14:58:05 +0100
+
+ilmbase (2.2.0-8) unstable; urgency=medium
+
+  * Upload to unstable
+  * debian/control: git:// -> https:// for Vcs-Git
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Mon, 01 Feb 2016 11:09:23 +0100
+
+ilmbase (2.2.0-7) experimental; urgency=medium
+
+  * Revert "Fix compilation on kFreeBSD. Closes: #788102"
+  * Fix symbol on sparc64 arch
+
+ -- Mathieu Malaterre <malat@debian.org>  Sat, 02 Jan 2016 14:04:17 +0100
+
+ilmbase (2.2.0-6) experimental; urgency=medium
+
+  * Fix compilation on kFreeBSD (Closes: #788102)
+  * Fix symbol file on mips64el
+
+ -- Mathieu Malaterre <malat@debian.org>  Mon, 09 Nov 2015 14:23:07 +0100
+
+ilmbase (2.2.0-5) experimental; urgency=medium
+
+  * debian/libilmbase12.symbols: symbols fixed for GCC5 (Closes: #793915)
+    Thanks to Matthias Klose (doko) for the updated symbols.
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Thu, 06 Aug 2015 11:47:19 +0200
+
+ilmbase (2.2.0-4) experimental; urgency=medium
+
+  * Fix debian/libilmbase12.symbols on alpha and sparc
+
+ -- Mathieu Malaterre <malat@debian.org>  Wed, 22 Jul 2015 15:33:02 +0200
+
+ilmbase (2.2.0-3) experimental; urgency=medium
+
+  * Fix debian/libilmbase12.symbols
+    on amd64, x32, ppc64 and hppa
+
+ -- Mathieu Malaterre <malat@debian.org>  Thu, 28 May 2015 21:59:29 +0200
+
+ilmbase (2.2.0-2) experimental; urgency=medium
+
+  * debian/libilmbase12.symbols: attempt to fix symbols
+  * debian/overrides/libilmbase12: per-arch overrides dropped
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Tue, 26 May 2015 10:17:11 +0200
+
+ilmbase (2.2.0-1) experimental; urgency=medium
+
+  * New upstream release (Closes: #785402)
+    - debian/copyright: DEP-5 compliance added
+    - debian/control: libilmbase7 => libilmbase12 bump
+    - debian/overrides/: libilmbase7 => libilmbase12 bump
+    - debian/libilmbase-dev.install: cosmetic update
+    - debian/: libilmbase7 => libilmbase12 install bump
+    - debian/: libilmbase7 => libilmbase12 symbols bump and update
+    - debian/patches/: patchset updated against v2.2.0
+      - 20_ucontext.patch dropped (applied upstream)
+      - 21_fixftbfs_non-x86.diff dropped (applied upstream)
+      - 30_license_headers.diff dropped (applied and updated upstream)
+
+ -- Matteo F. Vescovi <mfv@debian.org>  Mon, 18 May 2015 15:22:27 +0200
+
+ilmbase (1.0.3+dfsg-5) experimental; urgency=low
+
+  * Update symbol file
+
+ -- Mathieu Malaterre <malat@debian.org>  Sat, 09 May 2015 15:04:32 +0200
+
+ilmbase (1.0.3+dfsg-4) experimental; urgency=medium
+
+  * Update symbols file (pkgkde-symbolshelper + manual editing)
+  * Check signature in uscan. Closes: #776558
+
+ -- Mathieu Malaterre <malat@debian.org>  Thu, 12 Feb 2015 09:59:24 +0100
+
+ilmbase (1.0.3+dfsg-3) experimental; urgency=low
+
+  * Update d/watch to use the one with signature. Update: #776558
+  * Fix clean rule
+  * Import symbols file from version 1.0.1 & 1.0.3
+  * Remove Andreas Metzler. Closes: #716766
+    Thanks for your hard work !
+  * Fix vcs-field-not-canonical, bump Std-Vers to 3.9.6
+    No changes needed
+
+ -- Mathieu Malaterre <malat@debian.org>  Fri, 30 Jan 2015 09:14:32 +0100
+
+ilmbase (1.0.3+dfsg-2) experimental; urgency=low
+
+  * Fix 20_ucontext.patch to not break building on AMD64.
+
+ -- Andreas Metzler <ametzler@debian.org>  Fri, 12 Jul 2013 15:17:26 +0200
+
+ilmbase (1.0.3+dfsg-1) experimental; urgency=low
+
+  * Fix typo "relesaed" in description. Closes: #698561
+  * Unfuzz 10_fix_testsuite_for_m68k.
+  * 20_ucontext.patch, copied from Fedora: Fix build on error on ix86 (32bit).
+  * 21_fixftbfs_non-x86.diff, copied from Fedora: Fix build on error on non
+    x86/amd64 archs.
+  * Repackage tarball, deleting vc/.
+  * Ignore testsuite error on i386.
+  * Try re-enabling testsuite on arm.
+  * soname was bumped.
+  * Point watchfile to upstream download page.
+  * 30_license_headers.diff - Four files in the distribution tarball wrongly
+    still come with the non-free license headers. For clarification purposes
+    pull the correct information from upstream GIT.
+    <https://github.com/openexr/openexr/commit/301c13f7d9129e6e0d99e8f572de5fbc3d5bf8e3>
+
+ -- Andreas Metzler <ametzler@debian.org>  Sat, 02 Feb 2013 16:12:48 +0100
+
+ilmbase (1.0.1-6) unstable; urgency=low
+
+  * Drop accidentally added, unused patches from debian.tar.gz.
+
+ -- Andreas Metzler <ametzler@debian.org>  Sat, 22 Dec 2012 18:17:24 +0100
+
+ilmbase (1.0.1-5) unstable; urgency=low
+
+  * Convert to multi-arch. Closes: #695117
+    + Use debhelper v9 compat, bump build-dep.
+    + update *.install.
+    + Add Pre-Depends: ${misc:Pre-Depends}.
+    + Runtime library is Multi-Arch: same.
+
+ -- Andreas Metzler <ametzler@debian.org>  Sat, 08 Dec 2012 12:17:34 +0100
+
+ilmbase (1.0.1-4) unstable; urgency=low
+
+  * Use 3.0 (quilt) source format.
+  * Use dh $@ --with autotools_dev. Version autotools-dev b-d.
+  * These two changes add support for build-arch target, fixing FTBFS.
+    Closes: #666326
+  * Change override_dh_auto_test target to invoke dh_auto_test.
+  * Use 'dpkg-buildflags --export=configure' to get hardening-flags.
+    Add required b-d on dpkg-dev (>= 1.16.1). (Please note, that neither
+    stackprotector nor fortify seem to have any effect, according to
+    hardening-check.)
+  * Use -mieee on Alpha. (Closes: #458934)
+  * Standards-Version 3.9.3
+   + Do not refer to /usr/share/common-licenses/BSD anymore.
+   + Use Breaks/Replaces instead of Conflicts/Replaces.
+  * Add myself to uploaders, remove Cyril. (Thanks for you work!)
+
+ -- Andreas Metzler <ametzler@debian.org>  Sun, 01 Apr 2012 10:56:14 +0200
+
+ilmbase (1.0.1-3) unstable; urgency=low
+
+  * ACK previous NMUs, thanks to everyone involved.
+  * Adopt the package within pkg-phototools (Closes: #494878):
+     - Thanks to Adeodato Simó for having taken care of it until now!
+     - Set Maintainer to the group.
+     - Set Uploaders to myself.
+     - Replace Vcs-Bzr with Vcs-{Git,Browser}.
+  * Switch to debhelper 7:
+     - Bump debian/compat to 7.
+     - Version the B-D on debhelper: >= 7.0.50 to allow the use of
+       overrides.
+     - Simplify debian/rules.
+     - Specify some targets: build and clean to handle updating/cleaning
+       config.{guess,sub}, as well as patch/unpatch handling.
+     - Specify some overrides:
+        - dh_auto_configure: to set PTHREAD_LIBS=-lpthread when
+          configuring, to ensure proper linking against libpthread.
+        - dh_auto_test: to make sure not to run the testsuite on arm, or
+          when DEB_BUILD_OPTIONS contains “nocheck”.
+        - dh_installdocs: to install AUTHORS NEWS and README files in both
+          packages without having to list those files in .docs files.
+        - dh_makeshlibs: to pass -V to dh_makeshlibs.
+  * As a consequence, no longer perform an out-of-tree build (see
+    #480577). The clean target seems to do its job anyway.
+  * Switch to using quilt:
+     - Add a B-D on it.
+     - Move the patch to fix the testsuite on m68k to a proper patch:
+        + debian/patches/10_fix_testsuite_for_m68k
+  * Add ${misc:Depends} to the Depends of both packages.
+  * Bump Standards-Version from 3.7.3 to 3.8.1 (no changes needed).
+  * Update copyright notices for the packaging.
+
+ -- Cyril Brulebois <kibi@debian.org>  Mon, 13 Apr 2009 20:32:23 +0200
+
+ilmbase (1.0.1-2+nmu2) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * Apply workaround proposed by Andreas Metzler to correctly
+    link to libpthread. (Closes: #492357)
+
+ -- Frank Lichtenheld <djpig@debian.org>  Mon, 11 Aug 2008 18:28:06 -0300
+
+ilmbase (1.0.1-2+nmu1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Fix NaN handling in the testsuite for m68k. (Closes: #478548)
+  * Approved by maintainer per #478548.
+
+ -- Stephen R. Marenka <smarenka@debian.org>  Thu, 29 May 2008 14:40:04 -0500
+
+ilmbase (1.0.1-2) unstable; urgency=medium
+
+  * Replace and Conflict libopenexr-dev (<< 1.6). (Closes: #451913)
+
+  * Disable the testsuite in arm for now, see:
+    http://lists.debian.org/debian-arm/2007/11/msg00004.html
+
+  * Other changes:
+    + bump Standard-Version to 3.7.3 (no changes needed).
+    + use canonical URL in copyright and control (s/.org/.com/).
+
+ -- Adeodato Simó <dato@net.com.org.es>  Sun, 17 Feb 2008 14:07:41 +0100
+
+ilmbase (1.0.1-1) unstable; urgency=low
+
+  * Initial release. (Closes: #448883)
+
+ -- Adeodato Simó <dato@net.com.org.es>  Thu, 01 Nov 2007 18:01:15 +0100

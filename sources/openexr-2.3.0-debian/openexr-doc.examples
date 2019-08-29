@@ -1,0 +1,3 @@
+# The openexr-doc package contains libopenexr6's examples:
+IlmImfExamples/*.cpp
+IlmImfExamples/*.h
