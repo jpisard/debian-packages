@@ -18,6 +18,7 @@ RUN apt-get --quiet update \
     && DEBIAN_FRONTEND=noninteractive \
        apt-get install -y \
           git        \
+          wget       \
           debhelper  \
           devscripts \
           dh-systemd \
