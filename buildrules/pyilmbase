@@ -33,15 +33,15 @@ __get_source_code() {
 
    case "$debian_name" in
         stretch)
-            libboost-python="1.62.0"
+            libboostpython="1.62.0"
             ;;
          
         buster)
-            libboost-python="1.67.0"
+            libboostpython="1.67.0"
             ;;
          
         xenial)
-            libboost-python="1.78.0"
+            libboostpython="1.78.0"
             ;;
        
         *)
@@ -50,7 +50,7 @@ __get_source_code() {
             exit 1
     esac
 
-   sed -i "s|{libboost-python}|${libboost-python}|g"  "${swname}-${swver}/debian/control"
+   sed -i "s|{libboost-python}|libboost-python${libboostpython}|g"  "${swname}-${swver}/debian/control"
 
    # add dependent packages from output
    dpkg -i ${outdir}/libilmbase24_2.3.0-5~${debian_name}_amd64.deb
