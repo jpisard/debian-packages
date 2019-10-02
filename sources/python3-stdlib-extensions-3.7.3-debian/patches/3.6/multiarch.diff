@@ -1,0 +1,14 @@
+Index: b/3.6/Lib/distutils/sysconfig.py
+===================================================================
+--- a/3.6/Lib/distutils/sysconfig.py
++++ b/3.6/Lib/distutils/sysconfig.py
+@@ -99,6 +99,9 @@ def get_python_inc(plat_specific=0, pref
+                 incdir = os.path.join(get_config_var('srcdir'), 'Include')
+                 return os.path.normpath(incdir)
+         python_dir = 'python' + get_python_version() + build_flags
++        if not python_build and plat_specific:
++            import sysconfig
++            return sysconfig.get_path('platinclude')
+         return os.path.join(prefix, "include", python_dir)
+     elif os.name == "nt":
+         return os.path.join(prefix, "include")

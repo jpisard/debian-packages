@@ -1,0 +1,19 @@
+Package: idle
+Source: python3-defaults
+Version: 3.7.3-1~stretch
+Architecture: all
+Maintainer: Matthias Klose <doko@debian.org>
+Installed-Size: 19
+Depends: python3 (>= 3.7.3-1~stretch), python3-tk, idle-python3.7
+Enhances: python3
+Breaks: idle3 (<< 3.6.2-2)
+Replaces: idle3 (<< 3.6.2-2)
+Section: python
+Priority: optional
+Homepage: https://www.python.org/
+Description: IDE for Python using Tkinter (default version)
+ IDLE is an Integrated Development Environment for Python.
+ IDLE is written using Tkinter and therefore quite platform-independent.
+ .
+ This package is a dependency package, which depends on Debian's default
+ Python 3 version (currently v3.7).

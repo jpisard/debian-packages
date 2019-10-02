@@ -1,0 +1,98 @@
+Source: python3-stdlib-extensions
+Section: python
+Priority: optional
+Maintainer: Matthias Klose <doko@debian.org>
+Build-Depends: debhelper (>= 9), rdfind,
+  libpython3.7-dev,
+  libpython3.7-dbg,
+  python3.7-dev:any,
+  python3.7-dbg:any,
+#  libpython3.8-dev,
+#  libpython3.8-dbg,
+#  python3.8-dev:any,
+#  python3.8-dbg:any,
+  tk-dev, blt-dev (>= 2.4z-9), libgdbm-dev
+Build-Conflicts: tcl8.4-dev, tk8.4-dev, tcl8.5-dev, tk8.5-dev
+Standards-Version: 4.3.0
+Vcs-Git: https://salsa.debian.org/cpython-team/python3-stdlib.git
+Vcs-Browser: https://salsa.debian.org/cpython-team/python3-stdlib
+
+Package: python3-tk
+Architecture: any
+Multi-Arch: same
+Depends: python3 (>= 3.5), blt (>= 2.4z-9), ${shlibs:Depends}, ${misc:Depends}
+Provides: ${python3:Provides}
+Suggests: tix, python3-tk-dbg
+Breaks: libpython3.6-stdlib (<< 3.6.4~rc1-2), libpython3.7-stdlib (<< 3.7.0~a3-2)
+Replaces: libpython3.6-stdlib (<< 3.6.4~rc1-2), libpython3.7-stdlib (<< 3.7.0~a3-2)
+Description: Tkinter - Writing Tk applications with Python 3.x
+ A module for writing portable GUI applications with Python 3.x using Tk.
+ Also known as Tkinter.
+
+Package: python3-gdbm
+Architecture: any
+Multi-Arch: same
+Depends: ${python3:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Provides: ${python3:Provides}
+Suggests: python3-gdbm-dbg
+Replaces: python3.0 (<< 3.0.1)
+Description: GNU dbm database support for Python 3.x
+ GNU dbm database module for Python 3.x. Install this if you want to
+ create or read GNU dbm database files with Python.
+
+Package: python3-tk-dbg
+Architecture: any
+Multi-Arch: same
+Priority: optional
+Section: debug
+Depends: ${python3:Depends}, python3-tk (= ${binary:Version}), blt (>= 2.4z-9), ${shlibs:Depends}, ${misc:Depends}
+Description: Tkinter - Writing Tk applications with Python 3.x (debug extension)
+ A module for writing portable GUI applications with Python using Tk.
+ Also known as Tkinter.
+ .
+ This package contains the extensions built for the python3 debug interpreter.
+
+Package: python3-gdbm-dbg
+Architecture: any
+Multi-Arch: same
+Priority: optional
+Section: debug
+Depends: ${python3:Depends}, python3-gdbm (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: GNU dbm database support for Python 3.x (debug extension)
+ GNU dbm database module for Python 3.x. Install this if you want to
+ create or read GNU dbm database files with Python.
+ .
+ This package contains the extensions built for the python3 debug interpreter.
+
+Package: python3-distutils
+Architecture: all
+Multi-Arch: foreign
+Depends: python3 (>= 3.5), ${misc:Depends}, python3-lib2to3 (>= 3.6.4),
+Provides: ${python3:Provides}
+Breaks: libpython3.6-stdlib (<< 3.6.5~rc1-3), libpython3.7-stdlib (<< 3.7.0~b2-2),
+#  python3-setuptools (<< 38.2.4-2)
+Replaces: libpython3.6-stdlib (<< 3.6.4~rc1-2), libpython3.7-stdlib (<< 3.7.0~a3-2)
+Description: distutils package for Python 3.x
+ Distutils package for Python 3.x.  This package contains the distutils module
+ from the Python standard library.
+
+Package: python3-lib2to3
+Architecture: all
+Multi-Arch: foreign
+Priority: optional
+Depends: python3 (>= 3.5), ${misc:Depends}
+Provides: ${python3:Provides}
+Breaks: libpython3.6-stdlib (<< 3.6.4~rc1-2),
+  libpython3.7-stdlib (<< 3.7.0~a3-3),
+  python3.6-2to3 (<< 3.6.4-2),
+  python3.7-2to3 (<< 3.7.0~a3-3),
+Replaces: libpython3.6-stdlib (<< 3.6.4~rc1-2),
+  libpython3.7-stdlib (<< 3.7.0~a3-3),
+  python3.6-2to3 (<< 3.6.4-2),
+  python3.7-2to3 (<< 3.7.0~a3-3),
+Description: Interactive high-level object-oriented language (2to3, version 3.6)
+ Python is a high-level, interactive, object-oriented language. Its 3.6 version
+ includes an extensive class library with lots of goodies for
+ network programming, system administration, sounds and graphics.
+ .
+ This package contains the lib2to3 library.

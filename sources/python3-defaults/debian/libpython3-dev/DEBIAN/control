@@ -1,0 +1,18 @@
+Package: libpython3-dev
+Source: python3-defaults
+Version: 3.7.3-1~stretch
+Architecture: amd64
+Maintainer: Matthias Klose <doko@debian.org>
+Installed-Size: 44
+Depends: libpython3.7-dev (>= 3.7.3-1~)
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://www.python.org/
+Description: header files and a static library for Python (default)
+ Header files, a static library and development tools for building
+ Python modules, extending the Python interpreter or embedding Python
+ in applications.
+ .
+ This package is a dependency package, which depends on Debian's default
+ Python 3 version (currently v3.7).

@@ -1,0 +1,20 @@
+Package: 2to3
+Source: python3-defaults
+Version: 3.7.3-1~stretch
+Architecture: all
+Maintainer: Matthias Klose <doko@debian.org>
+Installed-Size: 42
+Depends: python3-lib2to3 (>= 3.7.2-1~), python3 (>= 3.7.3-1~stretch)
+Breaks: python (<< 2.7.14-4)
+Replaces: python (<< 2.7.14-4)
+Section: python
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://www.python.org/
+Description: 2to3 binary using python3
+ Python, the high-level, interactive object oriented language,
+ includes an extensive class library with lots of goodies for
+ network programming, system administration, sounds and graphics.
+ .
+ This package is a dependency package, which depends on Debian's default
+ Python 3 2to3 version (currently v3.7).

@@ -1,0 +1,29 @@
+Package: python3-doc
+Source: python3-defaults
+Version: 3.7.3-1~stretch
+Architecture: all
+Maintainer: Matthias Klose <doko@debian.org>
+Installed-Size: 40
+Depends: python3.7-doc (>= 3.7.3-1~)
+Suggests: python3 (>= 3.7.3-1~stretch), python3-examples
+Section: doc
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://www.python.org/
+Description: documentation for the high-level object-oriented language Python 3
+ This is the official set of documentation for the interactive high-level
+ object-oriented language Python 3 (v3.7). All documents are provided
+ in HTML format, some in info format. The package consists of nine documents:
+ .
+   * Tutorial
+   * Python Library Reference
+   * Macintosh Module Reference
+   * Python Language Reference
+   * Extending and Embedding Python
+   * Python/C API Reference
+   * Installing Python Modules
+   * Documenting Python
+   * Distributing Python Modules
+ .
+ This package is a dependency package, which depends on Debian's default
+ Python 3 version (currently v3.7).

@@ -1,0 +1,19 @@
+Package: python3-all-dev
+Source: python3-defaults
+Version: 3.7.3-1~stretch
+Architecture: amd64
+Maintainer: Matthias Klose <doko@debian.org>
+Installed-Size: 6
+Depends: python3 (= 3.7.3-1~stretch), libpython3-all-dev (= 3.7.3-1~stretch), python3-all (= 3.7.3-1~stretch), python3-dev (= 3.7.3-1~stretch), python3.7-dev
+Section: python
+Priority: optional
+Multi-Arch: allowed
+Homepage: https://www.python.org/
+Description: package depending on all supported Python 3 development packages
+ The package currently depends on python3.7-dev, in the
+ future, dependencies on jython (Python for a JVM) and ironpython (Python
+ for Mono) may be added.
+ .
+ This package is a dependency package used as a build dependency for other
+ packages to avoid hardcoded dependencies on specific Python 3 development
+ packages.

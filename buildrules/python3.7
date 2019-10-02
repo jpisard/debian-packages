@@ -1,0 +1,80 @@
+# package name
+swname="python3.7"
+# package version
+swver="3.7.3"
+
+# build functions
+
+__get_source_code() {
+   [ -d "${swname}-${swver}-debian" ] || \
+      die "no such folder: $PWD/${swname}-${swver}-debian"
+
+   echo "** - removing the folder ${swname}-${swver} ..."
+   rm -fr "${swname}-${swver}"
+
+   echo "** - download ${swname} git repository ..."
+   wget https://www.python.org/ftp/python/${swver}/Python-${swver}.tar.xz -O ${swname}_${swver}.orig.tar.xz
+
+   tar -Jxvf ${swname}_${swver}.orig.tar.xz
+   mv Python-3.7.3 ${swname}-${swver}
+   [ -d "${swname}-${swver}" ] || \
+      die "no such folder: $PWD/${swname}-${swver}"
+
+   
+   cp -pr "${swname}-${swver}-debian" \
+          "${swname}-${swver}/debian"
+
+   # change version with code name
+   debian_name=$(lsb_release  -sc)
+   
+   sed -i "s|{debian_name}|${debian_name}|g"  "${swname}-${swver}/debian/changelog"
+
+
+}
+
+__install_build_dependencies() {
+   apt-get --quiet update \
+      && DEBIAN_FRONTEND=noninteractive \
+         apt-get install -y \
+            bash-completion \
+            python-all  \
+            python3-all \
+            python-numpy \
+            python3-numpy \
+            libreadline-dev \
+            zlib1g-dev \
+            quilt sharutils libbz2-dev liblzma-dev libgdbm-dev libdb-dev tk-dev libssl-dev libexpat1-dev libbluetooth-dev locales-all libsqlite3-dev  time net-tools xvfb \
+            texinfo \
+            libncursesw5-dev \
+            blt-dev \
+            libmpdec-dev \
+            libffi-dev \
+            libgpm2 \
+      && wget http://srvdeploy/hari-repo/key/depot-deb.gpg.key \
+      && apt-key add depot-deb.gpg.key \
+      && printf "deb http://packages.internal.studiohari.com/hari-repo ${debian_name} main " > /etc/apt/sources.list.d/hari-repo.list \
+      && apt-get update \
+      && apt-get install -y python3-sphinx \
+      && rm -rf /var/lib/apt/lists/* \
+      && rm -rf /var/cache/apt/archives/*
+
+}
+
+__build_source_code() {
+   cd ${swname}-${swver}
+   debuild -us -uc
+}
+
+__move_packages_to_outdir() {
+   mv ../*.{build*,changes,deb,dsc} \
+      ../${swname}_${swver}.orig.tar.xz \
+      ${outdir}/
+}
+
+__cleanall() {
+   echo "** - removing temporary build folder ${buildir}/${swname}-${swver} ..."
+   rm -fr ${buildir}/${swname}-${swver}
+   echo "** - removing sources folder ${swname}-${swver} ..."
+   rm -fr ${swname}-${swver}
+}
+

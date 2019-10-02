@@ -1,0 +1,18 @@
+Package: python3-venv
+Source: python3-defaults
+Version: 3.7.3-1~stretch
+Architecture: amd64
+Maintainer: Matthias Klose <doko@debian.org>
+Installed-Size: 11
+Depends: python3.7-venv (>= 3.7.3-1~), python3 (>= 3.5), python3-distutils (>= 3.7.2-1~)
+Section: python
+Priority: optional
+Multi-Arch: allowed
+Homepage: https://www.python.org/
+Description: pyvenv-3 binary for python3 (default python3 version)
+ Python, the high-level, interactive object oriented language,
+ includes an extensive class library with lots of goodies for
+ network programming, system administration, sounds and graphics.
+ .
+ This package is a dependency package, which depends on Debian's default
+ Python 3 version (currently v3.7).

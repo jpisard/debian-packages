@@ -1,0 +1,498 @@
+python3-stdlib-extensions (3.7.3-1~{debian_name}) unstable; urgency=medium
+
+  * debian/changelog: insert dist name to package
+
+python3-stdlib-extensions (3.7.3-1) unstable; urgency=medium
+
+  * Update 3.7 extensions and modules to 3.7.3 (no changes).
+
+ -- Matthias Klose <doko@debian.org>  Tue, 26 Mar 2019 08:58:04 +0100
+
+python3-stdlib-extensions (3.7.3~rc1-1) unstable; urgency=medium
+
+  * Update 3.7 extensions and modules to 3.7.3 release candidate 1.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 13 Mar 2019 13:36:05 +0100
+
+python3-stdlib-extensions (3.7.2-3) unstable; urgency=medium
+
+  * Clean up empty directories on upgrade. Closes: #918182.
+  * Bump standards version.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 18 Jan 2019 09:45:15 +0100
+
+python3-stdlib-extensions (3.7.2-2) unstable; urgency=medium
+
+  * Remove 3.6 bytecode files on upgrade. Closes: #918098.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 04 Jan 2019 09:48:32 +0100
+
+python3-stdlib-extensions (3.7.2-1) unstable; urgency=medium
+
+  * Update 3.6 extensions and modules to 3.6.8.
+  * Update 3.7 extensions and modules to 3.7.2.
+  * Stop building extensions for python3.6.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 03 Jan 2019 06:19:13 +0100
+
+python3-stdlib-extensions (3.7.1-1) unstable; urgency=medium
+
+  * Update 3.6 extensions and modules to 3.6.7.
+  * Update 3.7 extensions and modules to 3.7.1.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 21 Oct 2018 11:30:14 +0200
+
+python3-stdlib-extensions (3.6.6-1) unstable; urgency=medium
+
+  * Update 3.6 extensions and modules to 3.6.6.
+  * Update 3.7 extensions and modules to 3.7.0.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 27 Jun 2018 17:01:32 +0200
+
+python3-stdlib-extensions (3.6.6~rc1-3) unstable; urgency=medium
+
+  * Don't ship generated files. Closes: #901637.
+
+ -- Matthias Klose <doko@debian.org>  Sat, 16 Jun 2018 04:01:32 +0200
+
+python3-stdlib-extensions (3.6.6~rc1-2) unstable; urgency=medium
+
+  * Use the distutils package from the source for the build.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 14 Jun 2018 01:31:09 +0200
+
+python3-stdlib-extensions (3.6.6~rc1-1) unstable; urgency=medium
+
+  * Update 3.6 extensions and modules to 3.6.6~rc1.
+  * Update 3.7 extensions and modules to 3.7.0~rc1.
+  * Avoid build dependencies on packages built from python3-defaults.
+    Addresses: #900535.
+  * Add Vcs attributes.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 14 Jun 2018 00:26:27 +0200
+
+python3-stdlib-extensions (3.6.5-4) unstable; urgency=medium
+
+  * Update 3.7 extensions and modules to 3.7.0~b5.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 06 Jun 2018 01:08:51 +0200
+
+python3-stdlib-extensions (3.6.5-3) unstable; urgency=medium
+
+  * Fix again the package removals (Simon McVittie). Closes: #894685.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 04 Apr 2018 13:04:35 +0200
+
+python3-stdlib-extensions (3.6.5-2) unstable; urgency=medium
+
+  * Re-Add the 3.6.5~rc1-2 and 3.6.5~rc1-3 uploads. Closes: #894456.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 30 Mar 2018 23:11:23 +0000
+
+python3-stdlib-extensions (3.6.5-1) unstable; urgency=medium
+
+  * Update 3.6 extensions to the 3.6.5 release.
+  * Update 3.7 extensions and modules to 3.7.0~b3.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 30 Mar 2018 18:47:46 +0800
+
+python3-stdlib-extensions (3.6.5~rc1-3) unstable; urgency=medium
+
+  * Bump the release string to satisfy dependencies. Closes: #894168.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 27 Mar 2018 18:36:59 +0800
+
+python3-stdlib-extensions (3.6.5~rc1-2) unstable; urgency=medium
+
+  * python3-distutils: Don't ship distutils/{__init__,version}.py
+
+ -- Matthias Klose <doko@debian.org>  Fri, 23 Mar 2018 11:41:32 +0800
+
+python3-stdlib-extensions (3.6.5~rc1-1) unstable; urgency=medium
+
+  * Update 3.6 extensions to the 3.6.5 release candidate.
+  * Update 3.7 extensions and modules to 3.7.0~b1.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 14 Mar 2018 08:28:00 +0100
+
+python3-stdlib-extensions (3.6.4-4) unstable; urgency=medium
+
+  * Update to 20180212 from the 3.6 branch.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 12 Feb 2018 12:25:03 +0100
+
+python3-stdlib-extensions (3.6.4-3) unstable; urgency=medium
+
+  * Update 3.7 extensions and modules to 3.7.0~b1.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 01 Feb 2018 09:56:26 +0100
+
+python3-stdlib-extensions (3.6.4-2) unstable; urgency=medium
+
+  * Relax dependencies on python3.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 27 Dec 2017 13:50:54 +0100
+
+python3-stdlib-extensions (3.6.4-1) unstable; urgency=medium
+
+  * Update extensions to the 3.6.4 release.
+  * Build a python3-lib2to3 package.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 27 Dec 2017 13:38:21 +0100
+
+python3-stdlib-extensions (3.6.4~rc1-6) unstable; urgency=medium
+
+  * python3-distutils: Depend on python3.6-2to3.
+  * Loosen dependency on python3 version.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 15 Dec 2017 12:15:57 +0100
+
+python3-stdlib-extensions (3.6.4~rc1-5) unstable; urgency=medium
+
+  * python3-tk: Don't ship the tkinter test files. Closes: #884414.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 15 Dec 2017 08:19:15 +0100
+
+python3-stdlib-extensions (3.6.4~rc1-4) unstable; urgency=medium
+
+  * Re-upload, with binaries built.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 14 Dec 2017 07:51:19 +0100
+
+python3-stdlib-extensions (3.6.4~rc1-3) unstable; urgency=medium
+
+  * Loosen the dependencies on the python3 version.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 14 Dec 2017 00:02:11 +0100
+
+python3-stdlib-extensions (3.6.4~rc1-2) unstable; urgency=medium
+
+  * python3-tk: Ship the tkinter module in this package.
+  * python3-distutils: Split out from the Python standard library.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 13 Dec 2017 12:06:50 +0100
+
+python3-stdlib-extensions (3.6.4~rc1-1) unstable; urgency=medium
+
+  * Update extensions to the 3.6.4 release candidate.
+  * Add extensions for 3.7.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 07 Dec 2017 08:39:56 +0100
+
+python3-stdlib-extensions (3.6.3-1) unstable; urgency=medium
+
+  * Update extensions to the 3.6.3 release.
+  * Drop extensions for 3.5. Closes: #880839.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 06 Nov 2017 11:28:53 +0100
+
+python3-stdlib-extensions (3.6.2-1) unstable; urgency=medium
+
+  * Update extensions to the 3.5.4 release.
+  * Update extensions to the 3.6.2 release.
+  * Bump standards version.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 05 Sep 2017 09:36:29 +0200
+
+python3-stdlib-extensions (3.5.3-2) unstable; urgency=medium
+
+  * Add extensions for 3.6.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 07 Jun 2017 16:49:33 -0700
+
+python3-stdlib-extensions (3.5.3-1) unstable; urgency=medium
+
+  * Update extensions to the 3.5.3 release.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 19 Jan 2017 16:29:58 +0100
+
+python3-stdlib-extensions (3.5.1-1) unstable; urgency=medium
+
+  * Remove 3.4 extensions.
+  * Update extensions to the 3.5.1 release.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 23 Feb 2016 09:13:52 +0100
+
+python3-stdlib-extensions (3.4.3-4) unstable; urgency=medium
+
+  * Update extensions to the current 3.4 and 3.5 branches.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 14 Aug 2015 10:31:08 +0200
+
+python3-stdlib-extensions (3.4.3-3) unstable; urgency=medium
+
+  * Build extensions for Python 3.5.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 18 May 2015 20:46:43 +0200
+
+python3-stdlib-extensions (3.4.3-1) unstable; urgency=medium
+
+  * Bump version to 3.4.3.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 26 Feb 2015 11:15:44 +0100
+
+python3-stdlib-extensions (3.4.2-1) unstable; urgency=medium
+
+  * Bump version to 3.4.2 release.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 08 Oct 2014 12:40:11 +0200
+
+python3-stdlib-extensions (3.4.2~rc1-1) unstable; urgency=medium
+
+  * Bump version to 3.4.2 release candidate 1.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 01 Oct 2014 04:09:23 +0200
+
+python3-stdlib-extensions (3.4.1-3) unstable; urgency=medium
+
+  * Build for blt 2.5. Closes: #753929.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 08 Jul 2014 11:19:53 +0200
+
+python3-stdlib-extensions (3.4.1-2) unstable; urgency=medium
+
+  * Require BLT version built for Tcl/Tk 8.6.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 13 Jun 2014 13:51:07 +0200
+
+python3-stdlib-extensions (3.4.1-1) unstable; urgency=medium
+
+  * Bump version to 3.4.1.
+  * Remove python 3.3 sources.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 04 Jun 2014 09:59:40 +0200
+
+python3-stdlib-extensions (3.3.4-1) unstable; urgency=medium
+
+  * Bump version to 3.3.4.
+  * Handle multiarch extension names. Closes: #735805.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 12 Feb 2014 11:29:15 +0100
+
+python3-stdlib-extensions (3.3.3-2) unstable; urgency=medium
+
+  * Build for python3.4.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 25 Dec 2013 22:41:17 +0100
+
+python3-stdlib-extensions (3.3.3-1) unstable; urgency=low
+
+  * Bump version to 3.3.3.
+  * Make the packages Multi-Arch: same. Replace the dependency on
+    python3 with libpython3-stdlib.
+  * Allow the package to cross-build.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 27 Nov 2013 17:27:43 +0100
+
+python3-stdlib-extensions (3.3.2-1) unstable; urgency=low
+
+  * Bump version to 3.3.2.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 16 May 2013 01:17:07 +0200
+
+python3-stdlib-extensions (3.3.1-1) unstable; urgency=low
+
+  * Bump version to 3.3.1.
+  * Allow the package to cross-build.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 07 Apr 2013 21:05:13 +0200
+
+python3-stdlib-extensions (3.3.0-1) experimental; urgency=low
+
+  * Python 3.3.0 release.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 09 Oct 2012 14:32:39 +0200
+
+python3-stdlib-extensions (3.3.0~rc1-1) experimental; urgency=low
+
+  * Python 3.3.0 release candidate 1.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 28 Aug 2012 10:10:02 +0200
+
+python3-stdlib-extensions (3.3.0~a2-1) experimental; urgency=low
+
+  * Python 3.3.0 alpha 2 release.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 09 Apr 2012 11:24:07 +0200
+
+python3-stdlib-extensions (3.2.3-1) unstable; urgency=low
+
+  * Python 3.2.3 release.
+    - Remove uses of the C tolower()/toupper() which could break with
+      a Turkish locale.
+    - Improve _tkinter error message on unencodable character.
+  * Bump standards version.
+  * Remove Python 3.1 sources.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 21 Mar 2012 17:32:40 +0100
+
+python3-stdlib-extensions (3.2-4) unstable; urgency=low
+
+  * Fix FTBFS with multiarch locations.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 31 May 2011 17:29:08 +0200
+
+python3-stdlib-extensions (3.2-2) unstable; urgency=low
+
+  * Stop building for python3.1.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 19 Apr 2011 21:21:43 +0200
+
+python3-stdlib-extensions (3.2-1) unstable; urgency=low
+
+  * Python 3.2 release.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 21 Feb 2011 11:59:17 +0100
+
+python3-stdlib-extensions (3.2~a3-1) experimental; urgency=low
+
+  * Build for Python 3.2.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 12 Oct 2010 20:33:57 +0200
+
+python3-stdlib-extensions (3.1.2-2) unstable; urgency=low
+
+  * Fix build failure with changed site directory.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 28 Sep 2010 15:52:28 +0200
+
+python3-stdlib-extensions (3.1.2-1) unstable; urgency=low
+
+  * Python 3.1.2 release.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 21 Mar 2010 18:45:14 +0100
+
+python3-stdlib-extensions (3.1.1-1) unstable; urgency=low
+
+  * Bump to 3.1.1, update from the 3.1 branch 20100117.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 17 Jan 2010 14:17:04 +0100
+
+python3-stdlib-extensions (3.1-1) experimental; urgency=low
+
+  * Build extensions for 3.1.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 23 Jul 2009 17:25:34 +0200
+
+python3-stdlib-extensions (3.0.1-0ubuntu3) jaunty; urgency=low
+
+  * debian/rules (clean): Update for 3.x.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 17 Feb 2009 11:13:27 +0100
+
+python3-stdlib-extensions (3.0.1-0ubuntu2) jaunty; urgency=low
+
+  * Build for python3.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 16 Feb 2009 23:27:58 +0100
+
+python-stdlib-extensions (2.5.4-0ubuntu2) jaunty; urgency=low
+
+  * Fix build dependencies.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 16 Feb 2009 12:33:41 +0000
+
+python-stdlib-extensions (2.5.4-0ubuntu1) jaunty; urgency=low
+
+  * Build extensions for 2.6.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 16 Feb 2009 12:39:04 +0100
+
+python-stdlib-extensions (2.5.2-1ubuntu1) intrepid; urgency=low
+
+  * Fix build failure, linking with the correct BLT library.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 23 Oct 2008 20:55:54 +0000
+
+python-stdlib-extensions (2.5.2-1) unstable; urgency=low
+
+  * Bump the package version to 2.5.2.
+
+ -- Matthias Klose <doko@debian.org>  Thu, 17 Apr 2008 21:27:50 +0000
+
+python-stdlib-extensions (2.5.2-0ubuntu2) hardy; urgency=low
+
+  * python-tk-dbg: Depend on python-tk, python-gdbm-dbg: Depend on python-gdbm.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 10 Mar 2008 18:00:36 +0000
+
+python-stdlib-extensions (2.5.2-0ubuntu1) hardy; urgency=low
+
+  * New upstream bugfix version.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 26 Feb 2008 11:27:59 +0000
+
+python-stdlib-extensions (2.5.1-1ubuntu2) hardy; urgency=low
+
+  * Build separate python-tk-dbg and python-gdbm-dbg packages. LP: #154020.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 03 Jan 2008 20:32:58 +0100
+
+python-stdlib-extensions (2.5.1-1ubuntu1) gutsy; urgency=low
+
+  * Bump the package version to 2.5.1 (no code change).
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 26 Apr 2007 10:38:47 +0200
+
+python-stdlib-extensions (2.5-0ubuntu1) feisty; urgency=low
+
+  * Bump the package version to 2.5.
+  * Set Ubuntu maintainer address.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon,  5 Mar 2007 19:30:55 +0100
+
+python-stdlib-extensions (2.4.4-3) unstable; urgency=low
+
+  * python-*-dbg: Add dependency to the python-* package.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 31 Jan 2008 01:00:21 +0100
+
+python-stdlib-extensions (2.4.4-2) unstable; urgency=low
+
+  * Build separate python-tk-dbg and python-gdbm-dbg packages.
+
+ -- Matthias Klose <doko@debian.org>  Tue, 01 Jan 2008 20:41:45 +0100
+
+python-stdlib-extensions (2.4.4-1) unstable; urgency=low
+
+  * Update modules to the 2.4.4 and 2.5 releases.
+
+ -- Matthias Klose <doko@debian.org>  Fri, 20 Oct 2006 00:33:37 +0200
+
+python-stdlib-extensions (2.4.3-4) unstable; urgency=low
+
+  * Update 2.5 extensions, taken from the 2.5c1 release.
+
+ -- Matthias Klose <doko@debian.org>  Wed, 30 Aug 2006 16:42:16 +0000
+
+python-stdlib-extensions (2-2) unstable; urgency=high
+
+  * Remove the conflicts with the python2.x versions; now the python2.x
+    packages conflict with python-tk (<< 2.3.4-2). Closes: #380597.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 31 Jul 2006 16:58:23 +0000
+
+python-stdlib-extensions (2-1) unstable; urgency=low
+
+  * Add 2.5 extensions, taken from the 2.5beta2 release.
+  * Build the extensions for python2.5 as well. Closes: #380125.
+  * Remove lib-tk from the package, moved to python2.x.
+
+ -- Matthias Klose <doko@debian.org>  Sun, 30 Jul 2006 17:58:40 +0200
+
+python-stdlib-extensions (1-1ubuntu1) edgy; urgency=low
+
+  * Do build the extensions for the supported Python versions only.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed,  5 Jul 2006 04:49:33 +0000
+
+python-stdlib-extensions (1-1) unstable; urgency=low
+
+  * Build python-tk and python-gdbm from a separate source to
+    include the extensions for all supported python versions into
+    one binary package.
+  * Initial release, split out from the python2.x packages.
+    - 2.4 taken from the 2.4 branch (20060607).
+    - 2.3 taken from the 2.3.5 release.
+
+ -- Matthias Klose <doko@debian.org>  Wed,  7 Jun 2006 03:02:31 +0200

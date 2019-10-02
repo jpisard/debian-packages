@@ -1,0 +1,26 @@
+# upstream updates
+#updates-3.6.diff
+#updates-3.7.diff
+
+# 3.6
+3.6/distutils-install-layout.diff
+3.6/distutils-link.diff
+3.6/distutils-sysconfig.diff
+3.6/bdist-wininst-notfound.diff
+3.6/multiarch.diff
+3.6/ext-no-libpython-link.diff
+3.6/multiarch-extname.diff
+3.6/disable-some-tests.diff
+3.6/mangle-fstack-protector.diff
+3.6/lib2to3-no-pickled-grammar.diff
+# 3.7
+3.7/distutils-install-layout.diff
+3.7/distutils-link.diff
+3.7/distutils-sysconfig.diff
+3.7/bdist-wininst-notfound.diff
+3.7/multiarch.diff
+3.7/ext-no-libpython-link.diff
+3.7/multiarch-extname.diff
+3.7/disable-some-tests.diff
+3.7/mangle-fstack-protector.diff
+3.7/lib2to3-no-pickled-grammar.diff

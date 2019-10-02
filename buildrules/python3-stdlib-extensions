@@ -1,0 +1,68 @@
+# package name
+swname="python3-stdlib-extensions"
+# package version
+swver="3.7.3"
+
+# build functions
+
+__get_source_code() {
+   [ -d "${swname}-${swver}-debian" ] || \
+      die "no such folder: $PWD/${swname}-${swver}-debian"
+
+   echo "** - removing the folder ${swname}-${swver} ..."
+   rm -fr "${swname}-${swver}"
+
+   echo "** - download ${swname} git repository ..."
+   wget http://deb.debian.org/debian/pool/main/p/${swname}/${swname}_${swver}.orig.tar.xz -O ${swname}_${swver}.orig.tar.xz
+
+   tar -Jxvf ${swname}_${swver}.orig.tar.xz
+   [ -d "${swname}-${swver}" ] || \
+      die "no such folder: $PWD/${swname}-${swver}"
+
+   
+   cp -pr "${swname}-${swver}-debian" \
+          "${swname}-${swver}/debian"
+
+   # change version with code name
+   debian_name=$(lsb_release  -sc)
+   
+   sed -i "s|{debian_name}|${debian_name}|g"  "${swname}-${swver}/debian/changelog"
+
+   [ -f "depot-deb.gpg.key" ]  || wget http://srvdeploy/hari-repo/key/depot-deb.gpg.key
+}
+
+__install_build_dependencies() {
+   apt-get --quiet update \
+      && DEBIAN_FRONTEND=noninteractive \
+         apt-get install -y \
+            bash-completion \
+            python-all  \
+            python3-all \
+      && apt-key add depot-deb.gpg.key \
+      && printf "deb http://packages.internal.studiohari.com/hari-repo ${debian_name} main " > /etc/apt/sources.list.d/hari-repo.list \
+      && apt-get update \
+      && apt-get install -y \
+         rdfind libpython3.7-dev libpython3.7-dbg python3.7-dev python3.7-dbg tk-dev blt-dev libgdbm-dev \
+      && rm -rf /var/lib/apt/lists/* \
+      && rm -rf /var/cache/apt/archives/*
+
+}
+
+__build_source_code() {
+   cd ${swname}-${swver}
+   debuild -us -uc
+}
+
+__move_packages_to_outdir() {
+   mv ../*.{build*,changes,deb,dsc} \
+      ../${swname}_${swver}.orig.tar.xz \
+      ${outdir}/
+}
+
+__cleanall() {
+   echo "** - removing temporary build folder ${buildir}/${swname}-${swver} ..."
+   rm -fr ${buildir}/${swname}-${swver}
+   echo "** - removing sources folder ${swname}-${swver} ..."
+   rm -fr ${swname}-${swver}
+}
+

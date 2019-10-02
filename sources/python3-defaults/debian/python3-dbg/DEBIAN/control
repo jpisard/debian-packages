@@ -1,0 +1,14 @@
+Package: python3-dbg
+Source: python3-defaults
+Version: 3.7.3-1~stretch
+Architecture: amd64
+Maintainer: Matthias Klose <doko@debian.org>
+Installed-Size: 24
+Depends: python3 (= 3.7.3-1~stretch), libpython3-dbg (= 3.7.3-1~stretch), python3.7-dbg (>= 3.7.3-1~)
+Section: debug
+Priority: optional
+Multi-Arch: allowed
+Homepage: https://www.python.org/
+Description: debug build of the Python 3 Interpreter (version 3.7)
+ Python 3 interpreter configured with --pydebug. Dynamically loaded modules
+ are searched in /usr/lib/python3.7/lib-dynload/debug first.

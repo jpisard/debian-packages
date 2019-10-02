@@ -1,0 +1,17 @@
+Package: python3-examples
+Source: python3-defaults
+Version: 3.7.3-1~stretch
+Architecture: all
+Maintainer: Matthias Klose <doko@debian.org>
+Installed-Size: 6
+Depends: python3 (>= 3.7.3-1~stretch), python3.7-examples (>= 3.7.3-1~)
+Section: python
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://www.python.org/
+Description: examples for the Python language (default version)
+ Examples, Demos and Tools for Python. These are files included in
+ the upstream Python distribution.
+ .
+ This package is a dependency package, which depends on Debian's default
+ Python 3 version (currently v3.7).

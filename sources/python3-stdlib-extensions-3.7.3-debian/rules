@@ -1,0 +1,212 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+export SHELL = /bin/bash
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+#rel_ext	= $(strip $(shell dpkg-parsechangelog | awk -F- '/^Version:/ {print $$NF}'))
+
+PYVERS	= $(shell py3versions -vs)
+PYVERS	= 3.7
+
+MIN_VER = 3.7.1-1~
+
+include /usr/share/dpkg/architecture.mk
+
+SET_ENV = PYTHONPATH=$(CURDIR)/$*/Lib
+
+ifneq ($(DEB_BUILD_MULTIARCH),$(DEB_HOST_MULTIARCH))
+  SET_ENV += PYTHONPATH=/usr/lib/python$*/plat-$(DEB_HOST_MULTIARCH)
+
+  # FIXME: is this sufficient?
+  SET_ENV += _PYTHON_HOST_PLATFORM=$(DEB_HOST_GNU_CPU)
+endif
+
+p_tk	= python3-tk
+p_gdbm	= python3-gdbm
+p_dist	= python3-distutils
+p_2to3	= python3-lib2to3
+d_tk	= debian/$(p_tk)
+d_gdbm	= debian/$(p_gdbm)
+d_dist	= debian/$(p_dist)
+d_2to3	= debian/$(p_2to3)
+
+build-arch: build
+build-indep: build
+build: build-stamp
+build-arch: build-stamp
+build-indep: build-stamp
+build-stamp: $(PYVERS:%=build-stamp-py%) $(PYVERS:%=dbg-stamp-py%)
+	touch $@
+
+build-stamp-py%:
+	dh_testdir
+	ln -sf /usr/lib/libBLT.2.4.so.8.6 $*/libBLT86.so
+	ln -sf /usr/lib/libBLT.2.4.so.8.6 $*/libBLT86.so.8.6
+	cd $* && $(SET_ENV) python$* setup.py build
+	touch $@
+
+dbg-stamp-py%:
+	dh_testdir
+	ln -sf /usr/lib/libBLT.2.4.so.8.6 $*/libBLT85.so
+	ln -sf /usr/lib/libBLT.2.4.so.8.6 $*/libBLT85.so.8.6
+	cd $* && $(SET_ENV) python$*-dbg setup.py build
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f *stamp*
+	rm -rf 3.?/build
+	rm -rf 3.?/libBLT*
+	rm -f debian/python3-tk.postinst
+	rm -f debian/python3-distutils.postinst
+	rm -f debian/python3-lib2to3.postinst
+	find 3* -name __pycache__ | xargs -r rm -rf
+	dh_clean
+
+install: build install-prereq $(PYVERS:%=install-stamp-py%) $(PYVERS:%=dbg-install-py%)
+	rdfind -makehardlinks true $(d_tk)/usr/lib
+	rdfind -makehardlinks true $(d_dist)/usr/lib
+	rdfind -makehardlinks true $(d_2to3)/usr/lib
+	rm -f results.txt
+
+install-prereq:
+	dh_testdir
+	dh_testroot
+	dh_prep
+
+install-stamp-py%: build-stamp-py%
+	cd $* && $(SET_ENV) python$* setup.py install \
+		--root=$(CURDIR)/$(d_tk) --install-layout=deb
+	mkdir -p $(d_tk)/usr/lib/python$*/lib-dynload
+	mv $(d_tk)/usr/lib/python3/*-packages/*.so \
+		$(d_tk)/usr/lib/python$*/lib-dynload/
+	mkdir -p $(d_gdbm)/usr/lib/python$*/lib-dynload
+	mv $(d_tk)/usr/lib/python$*/lib-dynload/_gdbm*.so \
+		$(d_gdbm)/usr/lib/python$*/lib-dynload/
+	rm -rf $(d_tk)/usr/lib/python3
+	cp -r $*/Lib/tkinter $(d_tk)/usr/lib/python$*/.
+	rm -rf $(d_tk)/usr/lib/python$*/tkinter/test
+
+	mkdir -p $(d_dist)/usr/lib/python$*
+	cp -r $*/Lib/distutils $(d_dist)/usr/lib/python$*/.
+	rm -f -v $(d_dist)/usr/lib/python$*/distutils/{__init__,version}.py
+	rm -rf $(d_dist)/usr/lib/python$*/distutils/tests
+	rm -rf $(d_dist)/usr/lib/python$*/distutils/command/wininst-*.exe
+	find $(d_dist) -name __pycache__ | xargs -r rm -rf
+
+	mkdir -p $(d_2to3)/usr/lib/python$*
+	cp -r $*/Lib/lib2to3 $(d_2to3)/usr/lib/python$*/.
+	rm -rf $(d_2to3)/usr/lib/python$*/lib2to3/tests
+	find $(d_2to3) -name __pycache__ | xargs -r rm -rf
+
+dbg-install-py%: dbg-stamp-py%
+	cd $* && $(SET_ENV) python$*-dbg setup.py install \
+		--root=$(CURDIR)/$(d_tk)-dbg --install-layout=deb
+	mkdir -p $(d_tk)-dbg/usr/lib/python$*/lib-dynload
+	mv $(d_tk)-dbg/usr/lib/python3/*-packages/*.so \
+		$(d_tk)-dbg/usr/lib/python$*/lib-dynload/
+	mkdir -p $(d_gdbm)-dbg/usr/lib/python$*/lib-dynload
+	mv $(d_tk)-dbg/usr/lib/python$*/lib-dynload/_gdbm*.so \
+		$(d_gdbm)-dbg/usr/lib/python$*/lib-dynload/
+	rm -rf $(d_tk)-dbg/usr/lib/python3
+
+# Build architecture-independent files here.
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs -i
+	dh_installdocs -p$(p_dist) -p$(p_2to3) debian/README.Debian
+ifeq (0,1)
+	( \
+	  echo 'python3:Depends=python3 (>= $(MIN_VER)), python3 (<< 3.9)'; \
+	  echo 'python3:Versions=3.7, 3.8'; \
+	  echo 'python3:Provides=python3.7-distutils, python3.8-distutils'; \
+	) >> debian/python3-distutils.substvars
+	( \
+	  echo 'python3:Depends=python3 (>= $(MIN_VER)), python3 (<< 3.9)'; \
+	  echo 'python3:Versions=3.7, 3.8'; \
+	  echo 'python3:Provides=python3.7-lib2to3, python3.8-lib2to3'; \
+	) >> debian/python3-lib2to3.substvars
+else
+	( \
+	  echo 'python3:Depends=python3 (>= $(MIN_VER)), python3 (<< 3.8)'; \
+	  echo 'python3:Versions=3.7'; \
+	  echo 'python3:Provides=python3.7-distutils'; \
+	) >> debian/python3-distutils.substvars
+	( \
+	  echo 'python3:Depends=python3 (>= $(MIN_VER)), python3 (<< 3.8)'; \
+	  echo 'python3:Versions=3.7'; \
+	  echo 'python3:Provides=python3.7-lib2to3'; \
+	) >> debian/python3-lib2to3.substvars
+endif
+	dh_lintian -i
+	dh_compress -i
+	dh_fixperms -i
+	sed 's/@PYVERS@/$(PYVERS)/' debian/python3-distutils.postinst.in \
+	  > debian/python3-distutils.postinst
+	sed 's/@PYVERS@/$(PYVERS)/' debian/python3-lib2to3.postinst.in \
+	  > debian/python3-lib2to3.postinst
+	dh_installdeb -i
+	dh_shlibdeps -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs -a
+	dh_installdocs -p$(p_gdbm) debian/README.Debian
+	dh_installdocs -p$(p_tk) debian/README.Tk
+	rm -rf $(d_gdbm)-dbg/usr/share/doc/$(p_gdbm)-dbg
+	ln -s $(p_gdbm) $(d_gdbm)-dbg/usr/share/doc/$(p_gdbm)-dbg
+	rm -rf $(d_tk)-dbg/usr/share/doc/$(p_tk)-dbg
+	ln -s $(p_tk) $(d_tk)-dbg/usr/share/doc/$(p_tk)-dbg
+	dh_strip -p$(p_gdbm) --dbg-package=$(p_gdbm)-dbg
+	dh_strip -p$(p_tk) --dbg-package=$(p_tk)-dbg
+ifeq (0,1)
+	( \
+	  echo 'python3:Depends=python3 (>= $(MIN_VER)), python3 (<< 3.9)'; \
+	  echo 'python3:Versions=3.7, 3.8'; \
+	  echo 'python3:Provides=python3.7-gdbm, python3.8-gdbm'; \
+	) >> debian/python3-gdbm.substvars
+	( \
+	  echo 'python3:Depends=python3 (>= $(MIN_VER)), python3 (<< 3.9)'; \
+	  echo 'python3:Versions=3.7, 3.8'; \
+	  echo 'python3:Provides=python3.7-tk, python3.8-tk'; \
+	) >> debian/python3-tk.substvars
+else
+	( \
+	  echo 'python3:Depends=python3 (>= $(MIN_VER)), python3 (<< 3.8)'; \
+	  echo 'python3:Versions=3.7'; \
+	  echo 'python3:Provides=python3.7-gdbm'; \
+	) >> debian/python3-gdbm.substvars
+	( \
+	  echo 'python3:Depends=python3 (>= $(MIN_VER)), python3 (<< 3.8)'; \
+	  echo 'python3:Versions=3.7'; \
+	  echo 'python3:Provides=python3.7-tk'; \
+	) >> debian/python3-tk.substvars
+endif
+	dh_lintian -a
+	dh_compress -a
+	dh_fixperms -a
+	sed 's/@PYVERS@/$(PYVERS)/' debian/python3-tk.postinst.in \
+	  > debian/python3-tk.postinst
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install
