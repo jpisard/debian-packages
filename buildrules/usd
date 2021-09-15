@@ -1,0 +1,75 @@
+# package name
+swname="USD"
+# package version
+if [ -z ${version} ] ; then swver="21.08" && echo "Using default version 21.08"; else swver=${version} ; fi
+
+# build functions
+
+__get_source_code() {
+   echo "** - download ${swname} git repository ..."
+   wget https://github.com/PixarAnimationStudios/USD/archive/refs/tags/v${swver}.tar.gz -O ${swname}_${swver}.orig.tar.gz
+
+   tar -zxvf ${swname}_${swver}.orig.tar.gz
+   [ -d "${swname}-${swver}" ] || \
+      die "no such folder: $PWD/${swname}-${swver}"
+}
+
+__install_build_dependencies() {
+   echo deb http://deb.debian.org/debian/  $(lsb_release -cs)  contrib non-free >> /etc/apt/sources.list
+   apt-get --quiet update \
+      && DEBIAN_FRONTEND=noninteractive \
+         apt-get install -y \
+            python3-pip     \
+            zlib1g          \
+            zlib1g-dev      \
+            nvidia-driver-libs \
+            mesa-common-dev \
+            libgl1-mesa-dev \
+            libglu1-mesa-dev \
+            rsync           \
+      && rm -rf /var/lib/apt/lists/* \
+      && rm -rf /var/cache/apt/archives/*
+
+   extrareq_file="/tmp/requirements-build-extra.txt"
+   echo 'PySide2 >= 5.15.2
+PyOpenGL >= 3.1.5
+CMake >= 3.21' > ${extrareq_file}
+   pip3 install -q -r ${extrareq_file}
+   rm -f ${extrareq_file}
+}
+
+__build_source_code() {
+   cd ${swname}-${swver}
+   mkdir build
+   python3 build_scripts/build_usd.py --alembic --test build
+   cd ..
+   mkdir ${swname}_${swver}_amd64
+   control_file="${swname}_${swver}_amd64/DEBIAN/control"
+   mkdir ${swname}_${swver}_amd64/DEBIAN
+   mkdir ${swname}_${swver}_amd64/usr
+   mkdir ${swname}_${swver}_amd64/usr/local
+   echo "Package: ${swname}
+Version: ${swver}
+Architecture: amd64
+Maintainer: Hari_IT <it@studiohari.com>
+Description: USD bins and libs" > ${control_file}
+   rsync -avr --exclude="src" --exclude="build" "${swname}-${swver}/build/" \
+          "${swname}_${swver}_amd64/usr/local/${swname}_${swver}"
+   dpkg-deb --build ${swname}_${swver}_amd64
+   cd ${swname}-${swver}
+}
+
+__move_packages_to_outdir() {
+   mv ../*.deb \
+      ../${swname}_${swver}.orig.tar.gz \
+      ${outdir}/
+}
+
+__cleanall() {
+   echo "** - removing temporary build folder ${buildir}/${swname}-${swver} ..."
+   rm -fr ${buildir}/${swname}-${swver}
+   echo "** - removing temporary package folder ${swname}_${swver}_amd64 ..."
+   rm -fr ${swname}_${swver}_amd64
+   echo "** - removing sources folder ${swname}-${swver} ..."
+   rm -fr ${swname}-${swver}
+}

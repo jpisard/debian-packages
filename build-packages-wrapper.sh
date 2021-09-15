@@ -19,6 +19,12 @@ mandatory argument missing: package name
 supported packages are:
 $(find $datadir -type f -printf " - %f\n")"
 
+version="$2"
+[ "$version" ] || echo "\
+optional argument missing: version number
+will use default value"
+
+
 outdir="${buildir}/packages"
 mkdir -p $outdir
 

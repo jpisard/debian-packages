@@ -11,6 +11,7 @@
 #    make package PKG=pyvmomi
 #    make package PKG=redis4
 #    make package DISTRO=debian10 PKG=salt
+#    make package DISTRO=debian10 PKG=usd VER=21.08
 #
 # Default values:
 #    COMPOSE: /usr/local/bin/docker-compose
@@ -40,7 +41,7 @@ dockerbuild: $(COMPOSE)
 package: dockerbuild
 	@export TMPDIR=/var/tmp
 	@for pkg in $(PACKAGES); do \
-	   sudo $(ENV) $(COMPOSE) run --rm $(DISTRO) $$pkg; \
+	   sudo $(ENV) $(COMPOSE) run --rm $(DISTRO) $$pkg $(VER); \
 	done
 
 .PHONY : dockerbuild package

@@ -1,27 +1,26 @@
-FROM golang:1.11.5-stretch as compiler
+#FROM golang:1.11.5-stretch as compiler
 FROM debian:buster-slim
 
-MAINTAINER "Davide Madrisan" <d.madrisan@gmail.com>
+#MAINTAINER "Davide Madrisan" <d.madrisan@gmail.com>
 
 WORKDIR /usr/local
-COPY --from=compiler /usr/local/go .
+#COPY --from=compiler /usr/local/go .
 
-ENV GOPATH /go
-RUN mkdir -p \
-    "$GOPATH/src" \
-    "$GOPATH/bin" \
-    && chmod -R 755 "$GOPATH"
-ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+#ENV GOPATH /go
+#RUN mkdir -p \
+#    "$GOPATH/src" \
+#    "$GOPATH/bin" \
+#    && chmod -R 755 "$GOPATH"
+#ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
-# development environment for golang projects
 RUN apt-get --quiet update \
     && DEBIAN_FRONTEND=noninteractive \
        apt-get install -y \
+          lsb-release \
           wget \
           git        \
           debhelper  \
           devscripts \
-          dh-systemd \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /var/cache/apt/archives/*
 
@@ -40,8 +39,7 @@ RUN apt-get --quiet update \
 RUN mkdir -p \
     /opt/bin            \
     /opt/build          \
-    /opt/share/packages \
-    /usr/local/go/bin
+    /opt/share/packages 
 
 COPY build-packages-wrapper.sh /opt/bin/
 COPY buildrules/* /opt/share/packages/
