@@ -203,6 +203,7 @@ and enter the commands
     make package PKG=salt
     make package PKG=shinken
     make package DISTRO=debian10 PKG=isc-kea
+    make package DISTRO=debian10 PKG=usd VER=21.08
 
 [Docker-CE][docker-ce] and [Docker Compose][docker-compose] must be installed in order
 the make command to work.
